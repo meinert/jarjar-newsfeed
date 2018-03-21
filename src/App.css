@@ -1,6 +1,5 @@
-.App {
-  text-align: center;
-}
+@import 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
+
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
