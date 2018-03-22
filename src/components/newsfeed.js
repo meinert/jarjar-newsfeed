@@ -34,17 +34,6 @@ export default class JarJarNewsfeed extends React.PureComponent {
       sounds,
     } = this.state
 
-    const groups = updates.reduce((result, update, idx) => {
-      const index = Math.floor(idx / 3)
-      if (!result[index]) {
-        result[index] = []
-      }
-
-      result[index].push(update)
-
-      return result
-    }, {})
-
     return (
       <div className='jarjar-newsfeed'>
         <h1>Jar Jar Newsfeed</h1>

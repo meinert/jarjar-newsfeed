@@ -1,4 +1,4 @@
-import React, {PureComponent, Fragment, } from 'react'
+import React, { PureComponent, } from 'react'
 import PropTypes from 'prop-types'
 
 const actions = {
@@ -6,7 +6,7 @@ const actions = {
   dislike: 'Nah',
 }
 
-export default class ResponseButton extends PureComponent {
+export default class ReactionButton extends PureComponent {
   static propTypes = {
     type: PropTypes.oneOf(Object.keys(actions)),
     onClick: PropTypes.func.isRequired,

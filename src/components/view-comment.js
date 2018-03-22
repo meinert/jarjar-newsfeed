@@ -1,9 +1,10 @@
-import React, {PureComponent, Fragment, } from 'react'
+import React, {
+  PureComponent,
+} from 'react'
 import PropTypes from 'prop-types'
 
 export default class ViewComment extends PureComponent {
   static propTypes = {
-    id: PropTypes.string.isRequired,
     by: PropTypes.string.isRequired,
     created: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,

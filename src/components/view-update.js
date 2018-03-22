@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import CommentsList from './comments-list'
-import ResponseButton from './response-button'
+import ReactionButton from './reaction-button'
 
 export default class ViewUpdate extends React.PureComponent {
   static propTypes = {
@@ -75,8 +75,8 @@ export default class ViewUpdate extends React.PureComponent {
             <button className='btn btn-link' onClick={this.handleToggleShowComments} type='button'>
               {comments.length} comments
             </button>
-            <ResponseButton onClick={this.handleAction} type='like' value={like} />
-            <ResponseButton onClick={this.handleAction} type='dislike' value={dislike} />
+            <ReactionButton onClick={this.handleAction} type='like' value={like} />
+            <ReactionButton onClick={this.handleAction} type='dislike' value={dislike} />
           </div>
           {showComments && <CommentsList comments={comments} onComment={this.handleAddComment} />}
         </div>

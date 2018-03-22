@@ -1,4 +1,6 @@
-import React, {PureComponent, Fragment, } from 'react'
+import React, {
+  PureComponent,
+} from 'react'
 import PropTypes from 'prop-types'
 
 export default class AddComment extends PureComponent {
