@@ -13,6 +13,16 @@ export default class JarJarNewsfeed extends React.PureComponent {
     })).isRequired,
   }
 
+  state = {
+    sounds: false,
+  }
+
+  componentDidMount () {
+    this.setState({
+      sounds: true,
+    })
+  }
+
   render () {
     const {
       onAddUpdate,
@@ -20,17 +30,35 @@ export default class JarJarNewsfeed extends React.PureComponent {
       updates,
     } = this.props
 
+    const {
+      sounds,
+    } = this.state
+
+    const groups = updates.reduce((result, update, idx) => {
+      const index = Math.floor(idx / 3)
+      if (!result[index]) {
+        result[index] = []
+      }
+
+      result[index].push(update)
+
+      return result
+    }, {})
+
     return (
       <div className='jarjar-newsfeed'>
         <h1>Jar Jar Newsfeed</h1>
         <AddUpdate
           onSubmit={onAddUpdate}
         />
-        {updates.map((update) => <ViewUpdate
-          {...update}
-          key={update.id}
-          onAction={onUpdateAction}
-        />)}
+        <div className={'card-grid'}>
+          {updates.map((update) => <ViewUpdate
+            {...update}
+            key={update.id}
+            onAction={onUpdateAction}
+            sounds={sounds}
+          />)}
+        </div>
       </div>
     )
   }

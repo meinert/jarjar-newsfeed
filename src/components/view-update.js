@@ -6,11 +6,12 @@ import ResponseButton from './response-button'
 
 export default class ViewUpdate extends React.PureComponent {
   static propTypes = {
+    sounds: PropTypes.bool.isRequired,
     onAction: PropTypes.func.isRequired,
     id: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     by: PropTypes.string.isRequired,
-    created: PropTypes.string.isRequired,
+    created: PropTypes.number.isRequired,
     like: PropTypes.bool,
     dislike: PropTypes.bool,
     comments: PropTypes.arrayOf(PropTypes.shape({
@@ -20,6 +21,14 @@ export default class ViewUpdate extends React.PureComponent {
 
   state = {
     showComments: false,
+  }
+
+  componentDidMount () {
+    if (this.props.sounds) {
+      console.log('how rude');
+      const audio = new Audio('/rude.mp3')
+      audio.play()
+    }
   }
 
   handleToggleShowComments = () => {
@@ -56,7 +65,7 @@ export default class ViewUpdate extends React.PureComponent {
     } = this.state
 
     return (
-      <div className='card'>
+      <div className='card view-update'>
         <div className='card-body'>
           <blockquote>{text}</blockquote>
           <em>By {by} @ {created}</em>

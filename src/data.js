@@ -1,12 +1,12 @@
 import uuid from 'uuid/v4'
-export const comment = (by, text, created = 'A long time ago') => ({
+export const comment = (by, text, created = Date.now()) => ({
   text,
   by,
   created,
   id: uuid(),
 })
 
-export const update = (by, text, created = 'A long, long time ago') => {
+export const update = (by, text, created = Date.now()) => {
   return ({
     by,
     text,

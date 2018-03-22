@@ -6,6 +6,10 @@ import data, {
 } from './data'
 import JarJarNewsfeed from './components/newsfeed'
 
+const compareUpdates = (a, b) => {
+  return b.created - a.created
+}
+
 class App extends Component {
   state = {
     updates: data.updates,
@@ -16,15 +20,14 @@ class App extends Component {
       updates: [
         ...state.updates,
         update('You', text),
-      ],
+      ].sort(compareUpdates),
     }))
   }
 
   handleUpdateAction = (id, action, value) => {
-    console.log({ id, action, value, })
-    this.setState((state) => ({
-      updates: state.updates.map((update) => {
-        if (!update.id === id) {
+    this.setState((state) => {
+      const newUpdates = state.updates.map((update) => {
+        if (update.id !== id) {
           return update
         }
 
@@ -42,8 +45,12 @@ class App extends Component {
           ...update,
           [action]: value,
         }
-      }),
-    }))
+      })
+
+      return {
+        updates: newUpdates,
+      }
+    })
   }
 
   render () {

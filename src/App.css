@@ -1,6 +1,5 @@
 @import 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
 
-
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -19,6 +18,31 @@
 
 .App-intro {
   font-size: large;
+}
+
+blockquote {
+    white-space: pre-wrap;
+}
+
+@keyframes appear {
+  from {
+    transform: translateY(-20px) scaleX(0.5) scaleY(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.view-update {
+  animation: appear 1 .5s forwards;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
+  align-items: start;
 }
 
 @keyframes App-logo-spin {

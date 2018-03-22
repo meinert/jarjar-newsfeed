@@ -34,7 +34,7 @@ export default class AddUpdate extends PureComponent {
       update,
     } = this.state
 
-    return (<form onSubmit={this.handleSubmit} className='card'>
+    return (<form onSubmit={this.handleSubmit} className='card mb-3'>
       <div className='card-body'>
         <div className='card-title'>Yousa add update</div>
         <div className='form-group'>
