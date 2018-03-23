@@ -31,9 +31,9 @@ export default class AddComment extends PureComponent {
       comment,
     } = this.state
 
-    return (<form onSubmit={this.handleSubmit}>
+    return (<form onSubmit={this.handleSubmit} className='form-group'>
       <textarea className='form-control' value={comment} onChange={this.handleChange} />
-      <button onClick={this.handleSubmit}>save</button>
+      <button className='btn btn-primary btn-sm pull-right' onClick={this.handleSubmit}>save</button>
     </form>)
   }
 }

@@ -13,7 +13,9 @@ export default class AddUpdate extends PureComponent {
   handleChange = (event) => {
     this.setState({
       update: event.target.value
-        .replace(/I/, 'Mesa')
+        .replace(/I /, 'Mesa ')
+        .replace(/(^| )you /, '$1yousa ')
+        .replace(/(^| )You /, '$1Yousa ')
         .replace(/i want those droids/i, 'these are not the droids I\'m looking for')
         .replace(/ me /g, ' mesa '),
     })

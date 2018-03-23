@@ -65,7 +65,7 @@ export default class ViewUpdate extends React.PureComponent {
     } = this.state
 
     return (
-      <div className='card view-update'>
+      <div className={`card view-update ${showComments ? 'comments-open' : 'comments-closed'}`}>
         <div className='card-body'>
           <blockquote>{text}</blockquote>
           <em>By {by} @ {created}</em>

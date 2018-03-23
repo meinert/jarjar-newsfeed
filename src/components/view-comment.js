@@ -17,7 +17,7 @@ export default class ViewComment extends PureComponent {
       text,
     } = this.props
 
-    return (<li className='view-comment'>
+    return (<li className='view-comment small'>
       {text} (by {by} @ {created})
     </li>)
   }
