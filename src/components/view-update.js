@@ -4,6 +4,9 @@ import PropTypes from 'prop-types'
 import CommentsList from './comments-list'
 import ReactionButton from './reaction-button'
 
+import imageElement from './../jarjar.jpg'
+import moment from 'moment'
+
 export default class ViewUpdate extends React.PureComponent {
   static propTypes = {
     sounds: PropTypes.bool.isRequired,
@@ -17,6 +20,11 @@ export default class ViewUpdate extends React.PureComponent {
     comments: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string.isRequired,
     })),
+    imageSrc: PropTypes.string,
+  }
+
+  static defaultProps = {
+    imageSrc: imageElement,
   }
 
   state = {
@@ -25,7 +33,7 @@ export default class ViewUpdate extends React.PureComponent {
 
   componentDidMount () {
     if (this.props.sounds) {
-      console.log('how rude');
+      console.log('how rude')
       const audio = new Audio('/rude.mp3')
       audio.play()
     }
@@ -58,23 +66,27 @@ export default class ViewUpdate extends React.PureComponent {
       comments,
       like,
       dislike,
+      imageSrc,
     } = this.props
 
     const {
       showComments,
     } = this.state
 
+    const createdDate = moment(created).fromNow()
+
     return (
       <div className={`card view-update ${showComments ? 'comments-open' : 'comments-closed'}`}>
         <div className='card-body'>
+          <img src={imageSrc} />
           <blockquote>{text}</blockquote>
-          <em>By {by} @ {created}</em>
+          <em>– {by} ({createdDate})</em>
         </div>
         <div className='card-footer'>
-          <div className='btn-group btn-group-sm'>
-            <button className='btn btn-link' onClick={this.handleToggleShowComments} type='button'>
-              {comments.length} comments
-            </button>
+          <button className='btn btn-link' onClick={this.handleToggleShowComments} type='button'>
+            {comments.length} comments
+          </button>
+          <div className='btn-group btn-group-sm float-right'>
             <ReactionButton onClick={this.handleAction} type='like' value={like} />
             <ReactionButton onClick={this.handleAction} type='dislike' value={dislike} />
           </div>

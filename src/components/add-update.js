@@ -38,13 +38,11 @@ export default class AddUpdate extends PureComponent {
 
     return (<form onSubmit={this.handleSubmit} className='card mb-3'>
       <div className='card-body'>
-        <div className='card-title'>Yousa add update</div>
+        <h5 className='card-title'>Yousa add update:</h5>
         <div className='form-group'>
           <textarea className='form-control form-control-sm' onChange={this.handleChange} name='text' value={update} />
+          <button disabled={update.length === 0} className='btn btn-primary add-update-button' type='submit'>Add update</button>
         </div>
-      </div>
-      <div className='card-footer'>
-        <button disabled={update.length === 0} className='btn btn-primary' type='submit'>Add</button>
       </div>
     </form>)
   }

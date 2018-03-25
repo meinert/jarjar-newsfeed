@@ -36,10 +36,11 @@ export default class JarJarNewsfeed extends React.PureComponent {
 
     return (
       <div className='jarjar-newsfeed'>
-        <h1>Jar Jar Newsfeed</h1>
+        <h1 className='display-1'>Jar Jar Newsfeed</h1>
         <AddUpdate
           onSubmit={onAddUpdate}
         />
+        <br />
         <div className={'card-grid'}>
           {updates.map((update) => <ViewUpdate
             {...update}
