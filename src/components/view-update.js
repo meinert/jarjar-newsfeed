@@ -29,6 +29,7 @@ export default class ViewUpdate extends React.PureComponent {
 
   state = {
     showComments: false,
+    hideComments: false,
   }
 
   componentDidMount () {
@@ -40,9 +41,26 @@ export default class ViewUpdate extends React.PureComponent {
   }
 
   handleToggleShowComments = () => {
-    this.setState({
-      showComments: !this.state.showComments,
-    })
+    const {
+      showComments,
+    } = this.state
+
+    if (showComments) {
+      this.setState({
+        hideComments: true,
+      })
+
+      setTimeout(() => {
+        this.setState({
+          showComments: false,
+          hideComments: false,
+        })
+      }, 3000)
+    } else {
+      this.setState({
+        showComments: true,
+      })
+    }
   }
 
   handleAction = (action, value) => {
@@ -71,6 +89,7 @@ export default class ViewUpdate extends React.PureComponent {
 
     const {
       showComments,
+      hideComments,
     } = this.state
 
     const createdDate = moment(created).fromNow()
@@ -78,19 +97,19 @@ export default class ViewUpdate extends React.PureComponent {
     return (
       <div className={`card view-update ${showComments ? 'comments-open' : 'comments-closed'}`}>
         <div className='card-body'>
-          <img src={imageSrc} />
+          <img src={imageSrc} alt='' />
           <blockquote>{text}</blockquote>
           <em>– {by} ({createdDate})</em>
         </div>
         <div className='card-footer'>
-          <button className='btn btn-link' onClick={this.handleToggleShowComments} type='button'>
+          <button className='btn btn-link' onClick={this.handleToggleShowComments} type='button' disabled={hideComments}>
             {comments.length} comments
           </button>
           <div className='btn-group btn-group-sm float-right'>
             <ReactionButton onClick={this.handleAction} type='like' value={like} />
             <ReactionButton onClick={this.handleAction} type='dislike' value={dislike} />
           </div>
-          {showComments && <CommentsList comments={comments} onComment={this.handleAddComment} />}
+          {showComments && <CommentsList hide={hideComments} comments={comments} onComment={this.handleAddComment} />}
         </div>
       </div>
     )

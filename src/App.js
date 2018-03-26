@@ -19,7 +19,7 @@ class App extends Component {
     this.setState((state) => ({
       updates: [
         ...state.updates,
-        update('You', text),
+        update('You', text, undefined, Date.now()),
       ].sort(compareUpdates),
     }))
   }
@@ -36,7 +36,7 @@ class App extends Component {
             ...update,
             comments: [
               ...update.comments,
-              comment('You', value),
+              comment('You', value, undefined, Date.now()),
             ],
           }
         }

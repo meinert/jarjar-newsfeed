@@ -32,7 +32,7 @@ blockquote {
   }
 }
 
-@keyframes slideDown {
+@keyframes move-in {
   from {
     perspective: 1000px;
     transform: rotateX(70deg) translateY(-2000px);
@@ -47,12 +47,33 @@ blockquote {
   }
 }
 
+@keyframes move-out {
+  from {
+    perspective: 1000px;
+    transform: none;
+  }
+  50% {
+    perspective: 1000px;
+    transform: rotateX(70deg) translateY(0);
+    opacity: 1;
+  }
+  to {
+    perspective: 1000px;
+    transform: rotateX(70deg) translateY(-2000px);
+    opacity: 0;
+  }
+}
+
 .view-update {
   animation: appear 1 .5s forwards;
   perspective: 400px;
 }
 .comments-list {
-  animation: slideDown 1 3s forwards;
+  animation: move-in 1 3s forwards;
+  transform-origin: 50px 0;
+}
+.comments-list.hide {
+  animation: move-out 1 3s forwards;
   transform-origin: 50px 0;
 }
 .card-grid {
@@ -96,11 +117,8 @@ blockquote {
 }
 
 body {
-  background-color: #34394F;
-}
-
-#root {
-  background-image: url('naboobackground.png');
+  background: #34394F url('naboobackground.png') no-repeat fixed center center;
+  background-size: cover;
 }
 
 #root > .container {
