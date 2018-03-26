@@ -28,7 +28,7 @@ export default class ViewComment extends PureComponent {
     const createdDate = moment(created).fromNow()
 
     return (<li className='view-comment small'>
-      <img src={imageSrc} />
+      <img alt='' src={imageSrc} />
       {text}
       <br />
       <em>– {by} ({createdDate})</em>

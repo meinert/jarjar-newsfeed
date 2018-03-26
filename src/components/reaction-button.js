@@ -6,6 +6,11 @@ const actions = {
   dislike: 'Nah',
 }
 
+const trueClasses = {
+  like: 'btn-success',
+  dislike: 'btn-danger',
+}
+
 export default class ReactionButton extends PureComponent {
   static propTypes = {
     type: PropTypes.oneOf(Object.keys(actions)),
@@ -34,7 +39,7 @@ export default class ReactionButton extends PureComponent {
     } = this.props
 
     return (
-      <button onClick={this.handleClick} className={`btn ${value ? 'btn-success' : 'btn-link'}`}>
+      <button onClick={this.handleClick} className={`btn ${value ? trueClasses[type] : 'btn-link'}`}>
         {actions[type]}
       </button>
     )
