@@ -141,19 +141,10 @@ body {
   margin-top: 5px;
 }
 
-.btn.btn-danger,
-.btn.btn-danger:active,
-.btn.btn-danger:hover,
-.btn-danger:not(:disabled):not(.disabled):active,
-.btn-danger:not(:disabled):not(.disabled):active:focus {
-  background-color: #F47025;
-  border-color: #C04217;
-  box-shadow: none;
-}
-
 .btn:disabled {
   cursor: not-allowed;
 }
+
 .btn.btn-link {
   color: #344E68;
   font-weight: 600;
