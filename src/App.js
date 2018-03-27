@@ -1,21 +1,35 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, } from 'react'
+import './App.css'
+import data, {
+  comment,
+  update,
+} from './data'
+import JarJarNewsfeed from './components/newsfeed'
 
 class App extends Component {
-  render() {
+  state = {
+    updates: data.updates,
+  }
+
+  handleAddUpdate = (text) => {
+    console.log('Add an update to updates, with text: ', text);
+  }
+
+  render () {
+    const {
+      updates,
+    } = this.state
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className='container'>
+        {/* Display the newsfeed */}
+        <JarJarNewsfeed
+          updates={updates}
+          onAddUpdate={this.handleAddUpdate}
+        />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

@@ -1,7 +1,3 @@
-.App {
-  text-align: center;
-}
-
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -22,7 +18,135 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+blockquote {
+  white-space: pre-wrap;
+}
+
+@keyframes appear {
+  from {
+    transform: translateY(-20px) scaleX(0.5) scaleY(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    perspective: 1000px;
+    transform: rotateX(70deg) translateY(-2000px);
+  }
+  50% {
+    perspective: 1000px;
+    transform: rotateX(70deg) translateY(0);
+  }
+  to {
+    perspective: 1000px;
+    transform: none;
+  }
+}
+
+.view-update {
+  animation: appear 1 .5s forwards;
+  perspective: 400px;
+}
+.comments-list {
+  animation: slideDown 1 3s forwards;
+  transform-origin: 50px 0;
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
+  /* align-items: start; */
+}
+
+.card-footer {
+  position: relative;
+}
+
+.view-update {
+  position: relative;
+}
+.view-update.comments-open {
+    z-index: 1;
+}
+
+.comments-list {
+  position: absolute;
+  top: calc(100% - 16px);
+  background: white;
+    left: -16px;
+    right: -16px;
+  box-shadow: 0 0 8px 2px #344E68;
+    padding: 16px;
+}
+
+.comments-list ul {
+  margin: 0;
+  padding: 0;
+}
+
+.comments-list ul li {
+  margin: 0;
+  list-style-type: none;
+  border-top: 1px solid #E4C370;
+  padding: 16px 0;
+}
+
+body {
+  background: #34394F url('naboobackground.png') fixed center center;
+}
+
+#root {
+}
+
+#root > .container {
+  padding: 50px 0;
+  background: white;
+}
+
+.display-1 {
+  color: white;
+}
+
+.form-control:focus {
+  border-color: #34394F;
+  box-shadow: 0 0 0 0.2rem #EEAE72;
+}
+
+.btn.btn-primary {
+  background-color: #34394F;
+  border-color: #192335;
+  margin-top: 5px;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+}
+.btn.btn-link {
+  color: #344E68;
+  font-weight: 600;
+}
+
+.card-body > em,
+.view-comment > em {
+  color: #C04217;
+  font-size: 0.9em;
+}
+
+.card-body > img {
+  width: 80px;
+  margin-bottom: 10px;
+}
+
+.view-comment > img {
+  width: 40px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.btn.add-update-button {
+  margin-top: 10px;
 }
