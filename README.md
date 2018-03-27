@@ -26,5 +26,9 @@ to implement your own Jar Jar Newsfeed. Your app should:
  ## What is included
  Included in this bundle is
  - Everything that comes with [Create React App](CRA-READYME.md)
- - Bootstrap
- - moment
+ - [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
+ - [moment](https://momentjs.com/docs/)
+
+## Reference implementation
+You can see a reference implementation on the [demo](https://github.com/uvdata/jarjar-newsfeed/tree/demo) branch. But
+don't let this kill your own creativity.
