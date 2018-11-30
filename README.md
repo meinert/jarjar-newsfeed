@@ -1,6 +1,5 @@
 # Jar Jar Newsfeed
-Welcome to this React workshop project. Before you lies the bare basics
-to implement your own Jar Jar Newsfeed. Your app should:
+Welcome to this React project. Before you lies the bare basics to implement your own Jar Jar Newsfeed. Your app should:
 
  1. Allow the user to see all previous and new updates
  1. Allow the user to see comments to updates
