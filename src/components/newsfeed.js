@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import ViewUpdate from './view-update'
-import AddUpdate from './add-update'
+// import ViewUpdate from './view-update'
+// import AddUpdate from './add-update'
 
 export default class JarJarNewsfeed extends React.PureComponent {
   static propTypes = {
@@ -10,16 +10,18 @@ export default class JarJarNewsfeed extends React.PureComponent {
     updates: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string.isRequired,
     })).isRequired,
+    title: PropTypes.string.isRequired,
   }
 
   render () {
     const {
-      onAddUpdate,
-      updates,
+    // onAddUpdate,
+    // updates,
+      title,
     } = this.props
 
     return (<div>
-      <h1>Newsfeed</h1>
+      <h1>{title} - Newsfeed</h1>
       {/*
       * render a list of updates here
       * {updates.map(update => <ViewUpdate {...update} />)}

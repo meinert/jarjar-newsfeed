@@ -1,7 +1,6 @@
-import React, {PureComponent, } from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
 
-export default class AddUpdate extends PureComponent {
+export default class AddUpdate extends React.PureComponent {
   render () {
     return null;
   }

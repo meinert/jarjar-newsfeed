@@ -1,8 +1,8 @@
 import React, { Component, } from 'react'
 import './App.css'
 import data, {
-  comment,
-  update,
+  // comment,
+  // update,
 } from './data'
 import JarJarNewsfeed from './components/newsfeed'
 
@@ -24,6 +24,7 @@ class App extends Component {
       <div className='container'>
         {/* Display the newsfeed */}
         <JarJarNewsfeed
+          title="Jar Jar"
           updates={updates}
           onAddUpdate={this.handleAddUpdate}
         />
