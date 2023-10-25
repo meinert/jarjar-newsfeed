@@ -4,7 +4,7 @@ import c3poImage from './3po.jpg'
 import b1droidImage from './b1droid.jpg'
 
 import moment from 'moment'
-import uuid from 'uuid/v4'
+import { v4 as uuid } from 'uuid'
 
 const getRandomDate = () => {
   const randomNumber = Math.floor(Math.random() * Math.floor(5))

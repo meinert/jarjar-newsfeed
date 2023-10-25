@@ -13,6 +13,8 @@ Welcome to this React project. Before you lies the bare basics to implement your
  - Be creative
  - Any code is better than no code
  - Working code is better than any code
+ - You can use TypeScript and/or JavaScript
+ - You are not restricted to libraries that are currently used in this project
 
  ## Where to start
  1. Fork this project
@@ -22,14 +24,6 @@ Welcome to this React project. Before you lies the bare basics to implement your
  5. `npm start`
  6. Open `src/App.js` in your editor and go explore!
 
- ## What is included
- Included in this bundle is
- - [Slides from the workshop](ReactWorkshopSlides.pdf)
- - Everything that comes with [Create React App](CRA-READYME.md)
- - [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
- - [moment](https://momentjs.com/docs/)
- - A link to the React Meetup page on [meetup.com](https://www.meetup.com/Aalborg-React-React-Native-Meetup/)
-
 ## Reference implementation
 You can see a reference implementation on the [demo](https://github.com/uvdata/jarjar-newsfeed/tree/demo) branch. But
-don't let this kill your own creativity.
+don't let this kill your own creativity or make any assumptions about its quality.

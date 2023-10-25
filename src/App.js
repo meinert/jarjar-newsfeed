@@ -1,4 +1,4 @@
-import React, { Component, } from 'react'
+import React, {Component, useCallback, useState,} from 'react'
 import './App.css'
 import data, {
   // comment,
@@ -6,31 +6,27 @@ import data, {
 } from './data'
 import JarJarNewsfeed from './components/newsfeed'
 
-class App extends Component {
-  state = {
-    updates: data.updates,
-  }
+export function App() {
 
-  handleAddUpdate = (text) => {
-    console.log('Add an update to updates, with text: ', text);
-  }
+  const [updates, setUpdates] = useState([])
 
-  render () {
-    const {
-      updates,
-    } = this.state
+    const handleAddUpdate = useCallback(
+        /**
+         * @param {string }text
+         */
+        (text) => {
+            console.log('Add an update to updates, with text: ', text);
+        },
+   [])
 
-    return (
+  return (
       <div className='container'>
         {/* Display the newsfeed */}
         <JarJarNewsfeed
-          title="Jar Jar"
-          updates={updates}
-          onAddUpdate={this.handleAddUpdate}
+            title="Jar Jar"
+            updates={updates}
+            onAddUpdate={handleAddUpdate}
         />
       </div>
-    )
-  }
+  )
 }
-
-export default App
