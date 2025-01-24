@@ -8,7 +8,9 @@ import JarJarNewsfeed from './components/newsfeed'
 
 export function App() {
 
-  const [updates, setUpdates] = useState([])
+  const [updates, setUpdates] = useState(data.updates)
+
+  console.log('updates:', updates);
 
     const handleAddUpdate = useCallback(
         /**
@@ -23,7 +25,7 @@ export function App() {
       <div className='container'>
         {/* Display the newsfeed */}
         <JarJarNewsfeed
-            title="Jar Jar"
+            title="Jar Jar PPO"
             updates={updates}
             onAddUpdate={handleAddUpdate}
         />

@@ -34,7 +34,6 @@ export const update = (by, text, imageSrc, created = getRandomDate()) => {
   });
 }
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   updates: [
     update('Jar Jar', 'Mesa called Jar Jar Binks, mesa your humble servant!', jarjarImage),

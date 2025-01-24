@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 
 export default function JarJarNewsfeed(props) {
   const {
-    // onAddUpdate,
+    onAddUpdate,
     // updates,
     title,
   } = props

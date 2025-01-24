@@ -47,4 +47,8 @@ don't let this kill your own creativity or make any assumptions about its qualit
 
 
 
+# Feature backlog
+
+Updates list
+SQLLite DB for data
 
