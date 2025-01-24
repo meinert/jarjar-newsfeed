@@ -1,14 +1,14 @@
-import jarjarImage from './jarjar.jpg'
-import r2Image from './r2d2.jpg'
-import c3poImage from './3po.jpg'
-import b1droidImage from './b1droid.jpg'
+import jarjarImage from './assets/jarjar.jpg';
+import r2Image from './assets/r2d2.jpg';
+import c3poImage from './assets/3po.jpg';
+import b1droidImage from './assets/b1droid.jpg';
 
-import moment from 'moment'
-import { v4 as uuid } from 'uuid'
+import moment from 'moment';
+import { v4 as uuid } from 'uuid';
 
 const getRandomDate = () => {
-  const randomNumber = Math.floor(Math.random() * Math.floor(5))
-  return moment(Date.now()).subtract(randomNumber, 'days').valueOf()
+  const randomNumber = Math.floor(Math.random() * Math.floor(5));
+  return moment(Date.now()).subtract(randomNumber, 'days').valueOf();
 }
 
 export const comment = (by, text, imageSrc, created = getRandomDate()) => ({
@@ -17,7 +17,7 @@ export const comment = (by, text, imageSrc, created = getRandomDate()) => ({
   created,
   imageSrc,
   id: uuid(),
-})
+});
 
 export const update = (by, text, imageSrc, created = getRandomDate()) => {
   return ({
@@ -31,9 +31,10 @@ export const update = (by, text, imageSrc, created = getRandomDate()) => {
       comment('C3P0', 'I suggest a new strategy, Artoo: let the Wookie win', c3poImage),
       comment('B1 battle droid', 'Roger, roger.', b1droidImage),
     ],
-  })
+  });
 }
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   updates: [
     update('Jar Jar', 'Mesa called Jar Jar Binks, mesa your humble servant!', jarjarImage),
