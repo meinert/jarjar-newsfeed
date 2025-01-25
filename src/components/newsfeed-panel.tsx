@@ -19,10 +19,14 @@ const NewsfeedPanel: React.FC<NewsfeedPanelProps> = ({ onAddUpdate, title }) => 
     setOpen(true);
   };
 
-  const handleClose = (value: string) => {
+  const handleClose = (value: UpdateItemProps | undefined) => {
     setOpen(false);
-    const update: UpdateItemProps = UpdatesFactory.createUpdateItem('PPO', 'Test heading', 'Test text');
-    onAddUpdate(update);
+    if (value === undefined) {
+      console.log('Dialog close without adding update');
+      return;
+    }
+
+    onAddUpdate(value);
   };  
 
   return (
@@ -34,7 +38,7 @@ const NewsfeedPanel: React.FC<NewsfeedPanelProps> = ({ onAddUpdate, title }) => 
         </Button>
       </div>
     
-      <AddUpdate open={open} onClose={handleClose} selectedValue="" />
+      <AddUpdate open={open} onClose={handleClose} />
     </React.Fragment>
   );
 }

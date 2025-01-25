@@ -1,57 +1,121 @@
-import { Avatar, Dialog, DialogTitle, List, ListItem, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material';
-import PersonIcon from '@mui/icons-material/Person';
+import { Avatar, Dialog, DialogTitle, TextField, Button, Box, DialogContent, DialogActions } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { blue } from '@mui/material/colors';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { UpdateItemProps, UpdatesFactory } from '../models/updates';
 
 interface AddUpdateProps {
-  onClose: (value: string) => void;
-  selectedValue: string;
+  onClose: (value: UpdateItemProps | undefined) => void;
   open: boolean;
 }
 
-const emails = ['username@gmail.com', 'user02@gmail.com'];
+const AddUpdate: React.FC<AddUpdateProps> = ({ onClose, open }) => {
+  const [heading, setHeading] = useState('');
+  const [content, setContent] = useState('');
+  const [headingError, setHeadingError] = useState('');
+  const [touched, setTouched] = useState(false);
 
-const AddUpdate: React.FC<AddUpdateProps> = ({ onClose, selectedValue, open }) => {
-  
+  const headingRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (open) {
+      // Reset state when the dialog is opened
+      setHeading('');
+      setContent('');
+      setHeadingError('');
+      setTouched(false);
+    }
+
+      // Focus the heading input field after a short delay
+      setTimeout(() => {
+        if (headingRef.current) {
+          headingRef.current.focus();
+        }
+      }, 100);
+  }, [open]);
+
+  useEffect(() => {
+    if (touched && !heading) {
+      setHeadingError('Heading is required');
+    } else {
+      setHeadingError('');
+    }
+  }, [touched, heading]);
+
   const handleClose = () => {
-    onClose(selectedValue);
+    onClose(undefined);
   };
 
-  const handleListItemClick = (value: string) => {
-    onClose(value);
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!heading) {
+      setTouched(true);
+      setHeadingError('Heading is required');
+      return;
+    }
+    const update: UpdateItemProps = UpdatesFactory.createUpdateItem('PPO', heading, content);
+    onClose(update);
+  };
+
+  const handleHeadingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('handleHeadingChange', e.target.value);
+    setTouched(true);
+    setHeading(e.target.value);
+    if (touched && !e.target.value) {
+      setHeadingError('Heading is required');
+    } else {
+      setHeadingError('');
+    }
   };
 
   return (
-    <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Set backup account</DialogTitle>
-      <List sx={{ pt: 0 }}>
-        {emails.map((email) => (
-          <ListItem disablePadding key={email}>
-            <ListItemButton onClick={() => handleListItemClick(email)}>
-              <ListItemAvatar>
-                <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
-                  <PersonIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={email} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-        <ListItem disablePadding>
-          <ListItemButton
-            autoFocus
-            onClick={() => handleListItemClick('addAccount')}
-          >
-            <ListItemAvatar>
-              <Avatar>
-                <AddIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="Add account" />
-          </ListItemButton>
-        </ListItem>
-      </List>
+    <Dialog 
+      onClose={handleClose} 
+      open={open} 
+      PaperProps={{
+        component: 'form',
+        onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
+          handleSubmit(event);
+      },
+    }}>
+      <DialogTitle>Add New Update</DialogTitle>
+      <DialogContent sx={{ paddingTop: '1rem !important' }}>
+        <TextField
+          inputRef={headingRef}
+          id="heading"
+          label="Heading"
+          type="text"
+          fullWidth
+          variant="outlined"
+          value={heading}
+          onChange={handleHeadingChange}
+          onBlur={() => setTouched(true)}
+          error={!!headingError}
+          helperText={headingError}
+          sx={{ mb: 2 }}
+        />
+        <TextField
+          id="content"
+          label="Content"
+          type="text"
+          fullWidth
+          variant="outlined"
+          multiline
+          rows={4}
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          sx={{ mb: 2 }}
+        />
+        </DialogContent>
+        <DialogActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Button variant="outlined" color="info" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button type="submit" variant="contained" color="primary">
+            Submit
+          </Button>
+        </DialogActions>
+      
     </Dialog>
   );
 };
