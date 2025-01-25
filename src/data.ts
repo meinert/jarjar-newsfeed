@@ -5,13 +5,14 @@ import b1droidImage from './assets/b1droid.jpg';
 
 import moment from 'moment';
 import { v4 as uuid } from 'uuid';
+import { CommentProps, UpdateItemProps } from './models/updates';
 
 const getRandomDate = () => {
   const randomNumber = Math.floor(Math.random() * Math.floor(5));
   return moment(Date.now()).subtract(randomNumber, 'days').toDate();
 }
 
-export const comment = (by, text, imageSrc, created = getRandomDate()) => ({
+export const comment = (by: string, text: string, imageSrc: any, created: Date = getRandomDate()): CommentProps => ({
   text,
   by,
   created,
@@ -19,7 +20,7 @@ export const comment = (by, text, imageSrc, created = getRandomDate()) => ({
   id: uuid(),
 });
 
-export const update = (by, heading, text, imageSrc, created = getRandomDate()) => {
+export const update = (by: string, heading: string, text: string, imageSrc: any, created: Date = getRandomDate()): UpdateItemProps => {
   return ({
     by,
     heading,
