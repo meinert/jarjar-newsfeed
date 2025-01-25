@@ -8,8 +8,8 @@ import { v4 as uuid } from 'uuid';
 import { CommentProps, UpdateItemProps } from './models/updates';
 
 const getRandomDate = () => {
-  const randomNumber = Math.floor(Math.random() * Math.floor(5));
-  return moment(Date.now()).subtract(randomNumber, 'days').toDate();
+  const randomNumber = Math.floor(Math.random() * Math.floor(5*24*60));
+  return moment(Date.now()).subtract(randomNumber, 'minute').toDate();
 }
 
 export const comment = (by: string, text: string, imageSrc: any, created: Date = getRandomDate()): CommentProps => ({
@@ -42,6 +42,6 @@ export default {
     update('R2-D2', 'Bleep boop', 'Bleep boop, beep beep.', r2Image),
     update('Jar Jar', 'Yousa should follow me', 'Yousa should follow me now, okay? My warning yous: Gungans no like outsiders. Do not \'spect a warm welcome.', jarjarImage),
     update('Jar Jar', 'The BOOOM!', 'The BOOOM! Getin very scared and grabin that Jedi, the pah ... mesa here', jarjarImage),
-    update('Jar Jar', '', 'It\'s-A Clear Desa Separatists Made A Pact Wesa Desa Federation Du Trade. Senators, "Dellow Felagates." In Response To This Direct Threat To The Republic, Mesa Propose That The Senate Immediately Provides Emergency Powers To The Supreme Chancellor.', jarjarImage),
+    update('Jar Jar', 'A Pact', 'It\'s-A Clear Desa Separatists Made A Pact Wesa Desa Federation Du Trade. Senators, "Dellow Felagates." In Response To This Direct Threat To The Republic, Mesa Propose That The Senate Immediately Provides Emergency Powers To The Supreme Chancellor.', jarjarImage),
   ],
 }
