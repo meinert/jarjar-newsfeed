@@ -8,7 +8,7 @@ import { v4 as uuid } from 'uuid';
 
 const getRandomDate = () => {
   const randomNumber = Math.floor(Math.random() * Math.floor(5));
-  return moment(Date.now()).subtract(randomNumber, 'days').valueOf();
+  return moment(Date.now()).subtract(randomNumber, 'days').toDate();
 }
 
 export const comment = (by, text, imageSrc, created = getRandomDate()) => ({
@@ -19,9 +19,10 @@ export const comment = (by, text, imageSrc, created = getRandomDate()) => ({
   id: uuid(),
 });
 
-export const update = (by, text, imageSrc, created = getRandomDate()) => {
+export const update = (by, heading, text, imageSrc, created = getRandomDate()) => {
   return ({
     by,
+    heading,
     text,
     created,
     imageSrc,
@@ -36,10 +37,10 @@ export const update = (by, text, imageSrc, created = getRandomDate()) => {
 
 export default {
   updates: [
-    update('Jar Jar', 'Mesa called Jar Jar Binks, mesa your humble servant!', jarjarImage),
-    update('R2-D2', 'Bleep boop, beep beep.', r2Image),
-    update('Jar Jar', 'Yousa should follow me now, okay? My warning yous: Gungans no like outsiders. Do not \'spect a warm welcome.', jarjarImage),
-    update('Jar Jar', 'The BOOOM! Getin very scared and grabin that Jedi, the pah ... mesa here', jarjarImage),
-    update('Jar Jar', 'It\'s-A Clear Desa Separatists Made A Pact Wesa Desa Federation Du Trade. Senators, "Dellow Felagates." In Response To This Direct Threat To The Republic, Mesa Propose That The Senate Immediately Provides Emergency Powers To The Supreme Chancellor.', jarjarImage),
+    update('Jar Jar', 'Call from Mesa', 'Mesa called Jar Jar Binks, mesa your humble servant!', jarjarImage),
+    update('R2-D2', 'Bleep boop', 'Bleep boop, beep beep.', r2Image),
+    update('Jar Jar', 'Yousa should follow me', 'Yousa should follow me now, okay? My warning yous: Gungans no like outsiders. Do not \'spect a warm welcome.', jarjarImage),
+    update('Jar Jar', 'The BOOOM!', 'The BOOOM! Getin very scared and grabin that Jedi, the pah ... mesa here', jarjarImage),
+    update('Jar Jar', '', 'It\'s-A Clear Desa Separatists Made A Pact Wesa Desa Federation Du Trade. Senators, "Dellow Felagates." In Response To This Direct Threat To The Republic, Mesa Propose That The Senate Immediately Provides Emergency Powers To The Supreme Chancellor.', jarjarImage),
   ],
 }

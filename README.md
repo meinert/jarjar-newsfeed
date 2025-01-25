@@ -9,7 +9,7 @@ BY Peter Fjordbak Poulsen
    1. Updated react to version 19
    1. Added dependencies and overrides needed due due to react-scripts not being maintained. Consider using e.g. next.js or vite instead
 1. Renamed files to follow the naming convention for a typescript project and restructured the project folders
-1.  
+1.  Added localizationContext and utility components for formatting date and time
 
 Welcome to this React project. Before you lies the bare basics to implement your own Jar Jar Newsfeed. Your app should:
 

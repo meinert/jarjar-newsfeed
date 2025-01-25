@@ -1,5 +1,5 @@
 import React from 'react'
-import { UpdateItem } from './update-item'
+import UpdateItem from './update-item'
 import { UpdatesProps } from '../models/updates'
 // import PropTypes from 'prop-types'
 // import moment from 'moment'
@@ -34,8 +34,8 @@ export default class ViewUpdates extends React.PureComponent<UpdatesProps> {
 
     return (
       <div>
-      {updates.map((update) => (
-        <UpdateItem update={update} />
+      {updates.map((update, key) => (
+        <UpdateItem key={key} {...update} />
       ))}
       </div>
     );

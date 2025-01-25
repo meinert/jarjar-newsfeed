@@ -5,9 +5,10 @@ export interface UpdatesProps {
 export interface UpdateItemProps {
     id: string;
     by: string;
+    heading: string;
     text: string;
     imageSrc: string;
-    created: number;
+    created: Date;
     comments: CommentProps[];
 }
 
@@ -16,5 +17,5 @@ export interface CommentProps {
     by: string;
     text: string;
     imageSrc: string;
-    created: number;
+    created: Date;
 }
