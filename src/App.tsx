@@ -33,7 +33,7 @@ class App extends Component<UpdatesProps> {
           {/* Display the newsfeed */}
           <NewsfeedPanel
             title="Jar Jar PPO"
-            updates={updates}
+            // updates={updates}
             onAddUpdate={this.handleAddUpdate}
           />
         </div>

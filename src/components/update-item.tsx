@@ -1,5 +1,9 @@
 import React, { PureComponent } from 'react';
-import { UpdateItemProps } from '../models/updates';
+import { UpdateItemProps as xx } from '../models/updates';
+interface UpdateItemProps {
+  // key: number;
+  update: xx;
+}
 
 export class UpdateItem extends PureComponent<UpdateItemProps> {
   constructor(props) {
@@ -9,9 +13,9 @@ export class UpdateItem extends PureComponent<UpdateItemProps> {
   }
   
   render() {
-    const { by, text, imageSrc, created } = this.props;
+    const { by, text, imageSrc, created } = this.props.update;
     return (
-      <div>
+      <div key={this.props.update.id}>
         <h3>{by}</h3>
         <p>{text}</p>
         {/* Subcomponent will use imageSrc and created later */}

@@ -34,8 +34,8 @@ export default class ViewUpdates extends React.PureComponent<UpdatesProps> {
 
     return (
       <div>
-      {updates.map((update, index) => (
-        <UpdateItem key={index} {...update} />
+      {updates.map((update) => (
+        <UpdateItem update={update} />
       ))}
       </div>
     );

@@ -3,13 +3,12 @@
   "version": "0.2.0",
   "private": true,
   "dependencies": {
-    "babel-preset-react-app": "^10.0.1",
-    "moment": "^2.29.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "moment": "^2.30.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-scripts": "^5.0.1",
     "typescript": "^5.7.3",
-    "uuid": "^9.0.1"
+    "uuid": "^11.0.5"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -27,10 +26,10 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@types/jest": "^29.5.6",
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
-    "@types/uuid": "^9.0.6",
+    "@types/jest": "^29.5.14",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@types/uuid": "^10.0.0",
     "eslint": "^8.57.1",
     "eslint-config-react": "^1.1.7",
     "eslint-config-react-app": "^7.0.1"

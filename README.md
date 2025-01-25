@@ -6,6 +6,8 @@ BY Peter Fjordbak Poulsen
 
 1. The project now uses the branching strategy described in the section [Branching strategy](#branching-strategy)
 1. Updated dependencies to remove vulnerabilities (3 low, 5 moderate, 9 high) using npm and override typescript conflict
+   1. Updated react to version 19
+   1. Added dependencies and overrides needed due due to react-scripts not being maintained. Consider using e.g. next.js or vite instead
 1. Renamed files to follow the naming convention for a typescript project and restructured the project folders
 1.  
 
