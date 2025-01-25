@@ -36,7 +36,7 @@ export const update = (by: string, heading: string, text: string, imageSrc: any,
   });
 }
 
-export default {
+const data = {
   updates: [
     update('Jar Jar', 'Call from Mesa', 'Mesa called Jar Jar Binks, mesa your humble servant!', jarjarImage),
     update('R2-D2', 'Bleep boop', 'Bleep boop, beep beep.', r2Image),
@@ -45,3 +45,5 @@ export default {
     update('Jar Jar', 'A Pact', 'It\'s-A Clear Desa Separatists Made A Pact Wesa Desa Federation Du Trade. Senators, "Dellow Felagates." In Response To This Direct Threat To The Republic, Mesa Propose That The Senate Immediately Provides Emergency Powers To The Supreme Chancellor.', jarjarImage),
   ],
 }
+
+export default data;

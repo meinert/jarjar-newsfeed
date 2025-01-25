@@ -10,7 +10,7 @@ if (!rootElement) {
 }
 const reactRoot = createRoot(rootElement)
 reactRoot.render(<StrictMode>
-    <App updates={[]} />
+    <App />
 </StrictMode>)
 
 registerServiceWorker()

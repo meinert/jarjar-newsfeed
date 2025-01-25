@@ -9,7 +9,11 @@ BY Peter Fjordbak Poulsen
    1. Updated react to version 19
    1. Added dependencies and overrides needed due due to react-scripts not being maintained. Consider using e.g. next.js or vite instead
 1. Renamed files to follow the naming convention for a typescript project and restructured the project folders
-1.  Added localizationContext and utility components for formatting date and time
+1. Added localizationContext and utility components for formatting date and time
+1. Applied Material Design System
+1. Made the layout responsive
+1. Added heading to updates
+
 
 Welcome to this React project. Before you lies the bare basics to implement your own Jar Jar Newsfeed. Your app should:
 
@@ -53,14 +57,17 @@ don't let this kill your own creativity or make any assumptions about its qualit
 
 Updates list using cards
 Comments that can expand
+
+
 Option to add update, e.g. from a drawer using a modal
 Option to add comment to update using a modal
 Option to add reaction to update, e.g. using stars
 Option to add reaction to comment, e.g. using stars
+Make only on comment section be expanded
+Sort updates and comments by date
 Custom hooks to load data
 SQLLite DB for data
 Filter updates by user
 Filter updates by date
 Responsive layout with two columns on large screens and one on smaller (https://mui.com/material-ui/react-grid2/)
 "Login" page where the user is selected or just a simple option to change user
-

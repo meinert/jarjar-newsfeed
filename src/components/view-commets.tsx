@@ -47,8 +47,8 @@ const ViewComments: React.FC<ViewCommentsProps> = ({ comments }) => {
                 <AccordionDetails >
                     {comments.map((comment, key) => (
                         // <Box sx={{ padding: '1rem 0' }}>
-                            <Card variant="elevation" sx={{ margin: '1rem', backgroundColor: '#f9f9f9' }}>
-                                <CardItem heading={''} key={key} {...comment} />
+                            <Card key={key} variant="elevation" sx={{ margin: '1rem', backgroundColor: '#f9f9f9' }}>
+                                <CardItem heading={''} {...comment} />
                             </Card>
                         // </Box>
                     ))}

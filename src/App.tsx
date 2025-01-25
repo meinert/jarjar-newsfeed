@@ -1,59 +1,65 @@
-import React, { Component, JSX } from 'react';
+import React from 'react';
 import './App.scss';
 import data from './data';
 
 import ViewUpdates from './components/view-updates';
-import { UpdatesProps } from './models/updates';
+import { UpdateItemProps, UpdatesProps } from './models/updates';
 import NewsfeedPanel from './components/newsfeed-panel';
 
 import Grid from '@mui/material/Grid2';
+import { SortOrder, SortKey } from './models/enums';
+import { sortUtil } from './utils/sortOrderUtil';
 
-const compareUpdates = (a, b) => {
-  return b.created - a.created
-}
+interface AppProps {
+  updates: UpdateItemProps[];
+  sortOrder: SortOrder;
+  sortKey: SortKey;
+};
 
-class App extends Component<UpdatesProps> {
-  constructor(props) {
-    super(props);
+class App extends React.Component {
+  defaultSortOrder = SortOrder.DSC;
+  defaultSortKey = SortKey.CREATED;
 
-    this.handleAddUpdate = this.handleAddUpdate.bind(this);
+  state: AppProps = {
+    updates: data.updates.sort((a, b) => sortUtil(a, b, this.defaultSortKey, this.defaultSortOrder)),
+    sortOrder: this.defaultSortOrder,
+    sortKey: this.defaultSortKey
+    };
 
-    console.log('App props:', props);
-    console.log('Data:', data);
+  handleAddUpdate = (update: UpdateItemProps) => {
+    this.setState((state: AppProps) => {
+      const updates: UpdateItemProps[] = [...state.updates, update];
+
+      console.log('Add an update to updates', update, updates);
+      return { updates };
+    });
+
+    this.handleSortUpdates();
   }
 
-  handleAddUpdate(text) {
-    console.log('Add an update to updates, with text: ', text);
+  handleSortUpdates = () => {
+    this.setState((state: AppProps) => {
+      const updates: UpdateItemProps[] = state.updates.sort((a, b) => sortUtil(a, b, state.sortKey, state.sortOrder));
+
+      console.log('Sort updates', updates);
+      return { updates };
+    });
   }
 
   render() {
-    const { updates } = data;
+    const updates = this.state.updates
 
     return (
       <React.Fragment>
         <div className='content'>
           <NewsfeedPanel
                   title="Jar Jar PPO"
-                  // updates={updates}
                   onAddUpdate={this.handleAddUpdate}
                 />
           <ViewUpdates updates={updates} ></ViewUpdates>
         </div>
 
       </React.Fragment>
-      // <div>
-      //   <div className='container'>
-      //     {/* Display the newsfeed */}
-      //     <NewsfeedPanel
-      //       title="Jar Jar PPO"
-      //       // updates={updates}
-      //       onAddUpdate={this.handleAddUpdate}
-      //     />
-      //   </div>
-      //   <div>
-      //     <ViewUpdates updates={updates} ></ViewUpdates>
-      //   </div>
-      // </div>
     );
   }
 }
