@@ -96,13 +96,13 @@ blockquote {
 }
 
 body {
-  background: #34394F url('assets/naboobackground.png') fixed center center;
+  /* background: #34394F url('assets/naboobackground.png') fixed center center; */
 }
 
 #root {
 }
 
-#root > .container {
+.container {
   padding: 50px 0;
   background: white;
 }

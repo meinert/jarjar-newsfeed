@@ -7,7 +7,7 @@ export interface UpdateItemProps {
     by: string;
     text: string;
     imageSrc: string;
-    created: Date;
+    created: number;
     comments: CommentProps[];
 }
 
@@ -16,5 +16,5 @@ export interface CommentProps {
     by: string;
     text: string;
     imageSrc: string;
-    created: Date;
+    created: number;
 }

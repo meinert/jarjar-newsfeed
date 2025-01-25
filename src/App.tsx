@@ -1,34 +1,48 @@
-import React, {Component, useCallback, useState,} from 'react'
-import './App.css'
-import data, {
-  // comment,
-  // update,
-} from './data'
-import JarJarNewsfeed from './components/newsfeed'
+import React, { Component } from 'react';
+import './App.css';
+import data from './data';
 
-export function App() {
+import ViewUpdates from './components/view-updates';
+import { UpdatesProps } from './models/updates';
+import NewsfeedPanel from './components/newsfeed-panel';
 
-  const [updates, setUpdates] = useState(data.updates)
+const compareUpdates = (a, b) => {
+  return b.created - a.created
+}
 
-  console.log('updates:', updates);
+class App extends Component<UpdatesProps> {
+  constructor(props) {
+    super(props);
 
-    const handleAddUpdate = useCallback(
-        /**
-         * @param {string }text
-         */
-        (text) => {
-            console.log('Add an update to updates, with text: ', text);
-        },
-   [])
+    this.handleAddUpdate = this.handleAddUpdate.bind(this);
 
-  return (
-      <div className='container'>
-        {/* Display the newsfeed */}
-        <JarJarNewsfeed
+    console.log('App props:', props);
+    console.log('Data:', data);
+  }
+
+  handleAddUpdate(text) {
+    console.log('Add an update to updates, with text: ', text);
+  }
+
+  render() {
+    const { updates } = data;
+
+    return (
+      <div>
+        <div className='container'>
+          {/* Display the newsfeed */}
+          <NewsfeedPanel
             title="Jar Jar PPO"
             updates={updates}
-            onAddUpdate={handleAddUpdate}
-        />
+            onAddUpdate={this.handleAddUpdate}
+          />
+        </div>
+        <div>
+          <ViewUpdates updates={updates} ></ViewUpdates>
+        </div>
       </div>
-  )
+    );
+  }
 }
+
+export default App;

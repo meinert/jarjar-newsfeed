@@ -49,6 +49,16 @@ don't let this kill your own creativity or make any assumptions about its qualit
 
 # Feature backlog
 
-Updates list
+Updates list using cards
+Comments that can expand
+Option to add update, e.g. from a drawer using a modal
+Option to add comment to update using a modal
+Option to add reaction to update, e.g. using stars
+Option to add reaction to comment, e.g. using stars
+Custom hooks to load data
 SQLLite DB for data
+Filter updates by user
+Filter updates by date
+Responsive layout with two columns on large screens and one on smaller (https://mui.com/material-ui/react-grid2/)
+"Login" page where the user is selected or just a simple option to change user
 
