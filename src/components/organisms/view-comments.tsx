@@ -1,24 +1,14 @@
 import React from 'react';
-import { CommentItem } from '../../models/updates';
+import { CommentItem, Item } from '../../models/updateAndComment';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import {
-  Accordion,
-  AccordionActions,
-  AccordionDetails,
-  AccordionSummary,
-  Button
-} from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Button } from '@mui/material';
 import AddCommentDialog from '../molecules/add-comment-dialog';
-import CommentItemCard from './card-comment';
 import { UpdateType } from '../../models/enums';
+import CardComment from './card-comment';
 
 interface ViewCommentsProps {
-  onCommentCardUpdate: (
-    key: string | undefined,
-    updateType: UpdateType,
-    update: CommentItem | number
-  ) => void;
+  onCommentCardUpdate: (key: string | undefined, updateType: UpdateType, update: Item) => void;
   comments: CommentItem[];
 }
 
@@ -41,11 +31,9 @@ const ViewComments: React.FC<ViewCommentsProps> = ({ onCommentCardUpdate, commen
     onCommentCardUpdate(undefined, UpdateType.COMMENT, value);
   };
 
-  const handleCommentRating = (key: string, rating: number) => {
-    console.log('handleCommentRating', rating);
-    onCommentCardUpdate(key, UpdateType.RATING, rating);
-
-    throw new Error('Not implemented');
+  const handleCommentRating = (key: string, item: CommentItem) => {
+    console.log('handleCommentRating', key, item);
+    onCommentCardUpdate(key, UpdateType.RATING, item);
   };
 
   return (
@@ -57,21 +45,26 @@ const ViewComments: React.FC<ViewCommentsProps> = ({ onCommentCardUpdate, commen
           id="panel1-header">
           <Typography component="span">This update has {comments.length} comments </Typography>
           {comments.length === 0 && (
-            <Button sx={{ height: '1.5rem' }} onClick={handleClickOpen}>
-              Be the first to leave a comment
-            </Button>
+            <Typography
+              paddingLeft="10px"
+              component="span"
+              sx={{ fontWeight: 'bold', color: 'primary.main' }}>
+              BE THE FIRST TO LEAVE A COMMENT
+            </Typography>
           )}
         </AccordionSummary>
         <AccordionDetails>
-          {comments.map((comment, key) => (
-            <CommentItemCard key={key} {...comment} />
-          ))}
-        </AccordionDetails>
-        <AccordionActions>
-          <Button variant="contained" color="primary" onClick={handleClickOpen}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleClickOpen}
+            sx={{ marginLeft: 'auto', display: 'block' }}>
             Add Comment
           </Button>
-        </AccordionActions>
+          {comments.map((comment, key) => (
+            <CardComment onRating={handleCommentRating} key={key} item={comment} />
+          ))}
+        </AccordionDetails>
       </Accordion>
 
       <AddCommentDialog open={open} onClose={handleCloseAddCommentDialog} title="Add new comment" />

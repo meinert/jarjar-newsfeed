@@ -1,5 +1,5 @@
 import React, { JSX } from 'react';
-import { CommentItem, UpdateItem } from '../../models/updates';
+import { CommentItem, Item, UpdateItem } from '../../models/updateAndComment';
 import ViewComments from './view-comments';
 import CardItem from '../molecules/card-item';
 import { UpdateType } from '../../models/enums';
@@ -8,48 +8,43 @@ interface CardUpdateProps {
   onUpdateItemChange: (
     key: string | undefined,
     updateType: UpdateType,
-    update: CommentItem | number
+    update: CommentItem
   ) => void;
   updateItem: UpdateItem;
 }
 
 const CardUpdate: React.FC<CardUpdateProps> = ({ updateItem, onUpdateItemChange }): JSX.Element => {
-  const onCommentUpdate = (
+  const onCommentCardUpdate = (
     key: string | undefined,
     updateType: UpdateType,
-    update: CommentItem | number
+    update: CommentItem
   ) => {
     console.log('onCommentUpdate', key, updateType, update);
 
     // If the updateType is COMMENT, then the key is the id of the updateItem the comment is associated with
     if (updateType === UpdateType.COMMENT) {
       const updateItemKey = updateItem.id;
-      updateItem.comments.push(update as CommentItem); // TODO: Works for this demo, but should be handled differently in a real app
       return onUpdateItemChange(updateItemKey, updateType, update);
     }
 
     if (updateType === UpdateType.RATING) {
-      // Update the rating of the comment
-      const commentKey = key as string;
-      const rating = update as number;
-      const commentToUpdate = updateItem.comments.find((comment) => comment.id === commentKey);
-      if (commentToUpdate) {
-        console.log('Handle persisting the comment rating', commentToUpdate, rating);
-      }
+      return onUpdateItemChange(key, updateType, update);
     }
   };
 
+  const onUpdateRating = (key: string, update: Item) => {
+    return onUpdateItemChange(key, UpdateType.RATING, update);
+  };
+
   const updateCardActions = (
-    <ViewComments comments={updateItem.comments} onCommentCardUpdate={onCommentUpdate} />
+    <ViewComments comments={updateItem.comments} onCommentCardUpdate={onCommentCardUpdate} />
   );
 
   return (
     <CardItem
-      by={updateItem.by}
+      onRating={onUpdateRating}
+      item={updateItem}
       heading={updateItem.heading}
-      text={updateItem.text}
-      imageSrc={updateItem.imageSrc}
-      created={updateItem.created}
       actions={updateCardActions}
     />
   );

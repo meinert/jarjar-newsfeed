@@ -1,6 +1,6 @@
 import { Dialog, DialogTitle, Button, DialogContent, DialogActions } from '@mui/material';
 import React, { useState } from 'react';
-import { CommentItem, UpdatesFactory } from '../../models/updates';
+import { CommentItem, UpdatesFactory } from '../../models/updateAndComment';
 import FormInput from '../atomic/form-input';
 
 // TODO: Make a reusable component for dialogs with forms, overlaps with AddUpdateDialog
@@ -20,7 +20,7 @@ const AddCommentDialog: React.FC<AddCommentDialogProps> = ({ onClose, open, titl
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('handleSubmit', comment);
-    onClose(UpdatesFactory.createCommentItem('Peter', comment));
+    onClose(UpdatesFactory.createCommentItem('Peter', comment)); // TODO: Set the name of the user
   };
 
   return (

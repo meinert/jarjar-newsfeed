@@ -1,9 +1,15 @@
 import React, { JSX } from 'react';
-import { CommentItem } from '../../models/updates';
+import { Item } from '../../models/updateAndComment';
 import CardItem from '../molecules/card-item';
+import { UpdateType } from '../../models/enums';
 
-const CardComment: React.FC<CommentItem> = ({ by, text, imageSrc, created }): JSX.Element => {
-  return <CardItem by={by} text={text} imageSrc={imageSrc} created={created} elevation={20} />;
+interface CardCommentProps {
+  item: Item;
+  onRating: (key: string, item: Item) => void;
+}
+
+const CardComment: React.FC<CardCommentProps> = ({ item, onRating }): JSX.Element => {
+  return <CardItem onRating={onRating} item={item} elevation={20} />;
 };
 
 export default CardComment;

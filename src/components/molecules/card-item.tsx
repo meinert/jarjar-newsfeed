@@ -11,40 +11,37 @@ import {
   Tooltip,
   Typography
 } from '@mui/material';
-import { randomNumber } from '../../utils/miscUtils';
+import { Item } from '../../models/updateAndComment';
 
 interface CardItemProps {
-  by: string;
+  item: Item;
   heading?: string;
-  text: string;
-  imageSrc: string;
-  created: Date;
   actions?: JSX.Element;
   elevation?: number;
+  onRating: (key: string, item: Item) => void;
 }
 
 const CardItem: React.FC<CardItemProps> = ({
-  by,
+  item,
   heading = undefined,
-  text,
-  imageSrc,
-  created,
   actions,
-  elevation = 1
+  elevation = 1,
+  onRating
 }): JSX.Element => {
-  const [rating, setRating] = React.useState<number>(randomNumber(1, 5));
-  const [numberOfVotes, setNumberOfVotes] = React.useState<number>(randomNumber(1, 10));
+  const [rating, setRating] = React.useState<number>(item.rating);
+  const [numberOfVotes, setNumberOfVotes] = React.useState<number>(item.numberOfVotes);
 
   const calculateAverageRating = (newValue) => {
     setNumberOfVotes((numberOfVotes) => numberOfVotes + 1);
     setRating((rating) => (rating * numberOfVotes + newValue) / (numberOfVotes + 1));
+    onRating(item.id, item);
   };
 
   const cardHeader = (
     <CardHeader
-      avatar={<Avatar alt={by} src={imageSrc} sx={{ width: 56, height: 56 }} />}
-      title={by}
-      subheader={<DateTimeFormatter date={created} showSeconds={false} />}
+      avatar={<Avatar alt={item.by} src={item.imageSrc} sx={{ width: 56, height: 56 }} />}
+      title={item.by}
+      subheader={<DateTimeFormatter date={item.created} showSeconds={false} />}
     />
   );
 
@@ -55,7 +52,7 @@ const CardItem: React.FC<CardItemProps> = ({
           {heading}
         </Typography>
       )}
-      <Typography variant="body1">{text}</Typography>
+      <Typography variant="body1">{item.text}</Typography>
 
       <Tooltip title="Please leave you vote..." placement="top-start" followCursor>
         <div>

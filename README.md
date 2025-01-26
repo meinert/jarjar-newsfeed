@@ -18,9 +18,10 @@ As the application is using the Material Designs system (https://mui.com/materia
 1. Applied Material Design System
 1. Made the layout responsive
 1. Added heading to updates
-1. Added dialog with form and input validation for adding new update
+1. Added dialog with form and input validation for adding new update or comment
 1. Setup of linting and formatting + applying it to the code
 1. Created generic sortOrderUtil that can sort by any property descending or ascending
+1. Option to leave a rating on updates and comments
 
 Welcome to this React project. Before you lies the bare basics to implement your own Jar Jar Newsfeed. Your app should:
 

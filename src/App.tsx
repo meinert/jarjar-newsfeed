@@ -1,74 +1,87 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import './App.scss';
 import data from './data';
 
 import ViewUpdates from './components/templates/view-updates';
-import { CommentItem, UpdateItem } from './models/updates';
+import { CommentItem, Item, UpdateItem } from './models/updateAndComment';
 import NewsfeedPanel from './components/templates/newsfeed-panel';
 
 import { SortOrder, SortKey, UpdateType } from './models/enums';
 import { sortUtil } from './utils/sortOrderUtil';
 
-interface AppProps {
-  updates: UpdateItem[];
-  sortOrder: SortOrder;
-  sortKey: SortKey;
-}
+const App: React.FC = () => {
+  const defaultSortOrder = SortOrder.DSC;
+  const defaultSortKey = SortKey.CREATED;
 
-class App extends React.Component {
-  defaultSortOrder = SortOrder.DSC;
-  defaultSortKey = SortKey.CREATED;
+  const [updates, setUpdates] = useState<UpdateItem[]>(() => {
+    console.log('data', data);
+    return data.updates.sort((a, b) => sortUtil(a, b, defaultSortKey, defaultSortOrder));
+  });
+  const [sortOrder, setSortOrder] = useState<SortOrder>(defaultSortOrder);
+  const [sortKey, setSortKey] = useState<SortKey>(defaultSortKey);
 
-  state: AppProps = {
-    updates: data.updates.sort((a, b) =>
-      sortUtil(a, b, this.defaultSortKey, this.defaultSortOrder)
-    ),
-    sortOrder: this.defaultSortOrder,
-    sortKey: this.defaultSortKey
+  const handleSortUpdates = useCallback(() => {
+    setUpdates((prevUpdates) => prevUpdates.sort((a, b) => sortUtil(a, b, sortKey, sortOrder)));
+  }, [sortKey, sortOrder]);
+
+  const onUpdatesChange = (key: string | undefined, updateType: UpdateType, update: Item) => {
+    if (updateType === UpdateType.COMMENT) {
+      addComment(key as string, update);
+    }
+
+    if (updateType === UpdateType.RATING) {
+      addReview(key as string, update);
+    }
   };
 
-  handleAddUpdate = (update: UpdateItem) => {
-    this.setState((state: AppProps) => {
-      const updates: UpdateItem[] = [...state.updates, update];
+  const findCommentItem = (key: string) => {
+    const commentToUpdate = updates.find((u) => u.comments.some((c) => c.id === key));
+    if (commentToUpdate) {
+      return commentToUpdate.comments.find((c) => c.id === key);
+    }
+  };
 
-      console.log('Add an update to updates', update, updates);
-      return { updates };
+  const handleAddUpdate = (update: UpdateItem) => {
+    console.log('App - handleAddUpdate', update);
+    setUpdates((prevUpdates) => {
+      const newUpdates = [update, ...prevUpdates];
+      return newUpdates;
     });
 
-    this.handleSortUpdates();
+    handleSortUpdates();
   };
 
-  handleSortUpdates = () => {
-    this.setState((state: AppProps) => {
-      const updates: UpdateItem[] = state.updates.sort((a, b) =>
-        sortUtil(a, b, state.sortKey, state.sortOrder)
-      );
+  function addComment(key: string, update: Item) {
+    const itemToUpdate = updates.find((u) => u.id === key);
 
-      console.log('Sort updates', updates);
-      return { updates };
-    });
-  };
-
-  onUpdatesChange = (
-    key: string | undefined,
-    updateType: UpdateType,
-    update: CommentItem | number
-  ) => {
-    console.log('App - onUpdatesChange', key, updateType, update);
-  };
-
-  render() {
-    const updates = this.state.updates;
-
-    return (
-      <React.Fragment>
-        <div className="content">
-          <NewsfeedPanel title="Jar Jar" onAddUpdate={this.handleAddUpdate} />
-          <ViewUpdates onUpdatesChange={this.onUpdatesChange} updates={updates}></ViewUpdates>
-        </div>
-      </React.Fragment>
-    );
+    if (itemToUpdate) {
+      itemToUpdate.comments.push(update as CommentItem);
+    }
   }
-}
+
+  function addReview(key: string, update: Item) {
+    let itemToUpdate: Item | undefined = updates.find((u) => u.id === key);
+
+    if (!itemToUpdate) {
+      itemToUpdate = findCommentItem(key as string);
+    }
+
+    if (!itemToUpdate) {
+      return console.error('Item not found', key);
+    }
+
+    itemToUpdate.rating = update.rating;
+    itemToUpdate.numberOfVotes = update.numberOfVotes;
+  }
+
+  return (
+    <React.Fragment>
+      <div className="content">
+        <NewsfeedPanel title="Jar Jar" onAddUpdate={handleAddUpdate} />
+        <ViewUpdates onUpdatesChange={onUpdatesChange} updates={updates}></ViewUpdates>
+      </div>
+    </React.Fragment>
+  );
+};
 
 export default App;

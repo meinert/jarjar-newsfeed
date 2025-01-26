@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '@mui/material/Button';
-import { UpdateItem } from '../../models/updates';
+import { UpdateItem } from '../../models/updateAndComment';
 import AddUpdateDialog from '../molecules/add-update-dialog';
 
 // import ViewUpdate from './view-update'
@@ -24,6 +24,8 @@ const NewsfeedPanel: React.FC<NewsfeedPanelProps> = ({ onAddUpdate, title }) => 
       console.log('Dialog close without adding update');
       return;
     }
+
+    console.log('NewsfeedPanelProps - new update added', value);
 
     onAddUpdate(value);
   };
