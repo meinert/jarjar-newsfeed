@@ -1,15 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
 import Button from '@mui/material/Button';
-import { UpdateItemProps, UpdatesFactory } from '../models/updates';
+import { UpdateItemProps } from '../models/updates';
 import AddUpdate from './add-update';
 
 // import ViewUpdate from './view-update'
 // import AddUpdate from './add-update'
 
 interface NewsfeedPanelProps {
-    onAddUpdate: (update: UpdateItemProps) => void,
-    title: string
+  onAddUpdate: (update: UpdateItemProps) => void;
+  title: string;
 }
 
 const NewsfeedPanel: React.FC<NewsfeedPanelProps> = ({ onAddUpdate, title }) => {
@@ -27,7 +26,7 @@ const NewsfeedPanel: React.FC<NewsfeedPanelProps> = ({ onAddUpdate, title }) => 
     }
 
     onAddUpdate(value);
-  };  
+  };
 
   return (
     <React.Fragment>
@@ -37,10 +36,10 @@ const NewsfeedPanel: React.FC<NewsfeedPanelProps> = ({ onAddUpdate, title }) => 
           Add update
         </Button>
       </div>
-    
+
       <AddUpdate open={open} onClose={handleClose} />
     </React.Fragment>
   );
-}
+};
 
-export default NewsfeedPanel
+export default NewsfeedPanel;

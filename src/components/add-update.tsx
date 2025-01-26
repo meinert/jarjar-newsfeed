@@ -1,6 +1,11 @@
-import { Avatar, Dialog, DialogTitle, TextField, Button, Box, DialogContent, DialogActions } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import { blue } from '@mui/material/colors';
+import {
+  Dialog,
+  DialogTitle,
+  TextField,
+  Button,
+  DialogContent,
+  DialogActions
+} from '@mui/material';
 import React, { useEffect, useRef, useState } from 'react';
 import { UpdateItemProps, UpdatesFactory } from '../models/updates';
 
@@ -26,12 +31,12 @@ const AddUpdate: React.FC<AddUpdateProps> = ({ onClose, open }) => {
       setTouched(false);
     }
 
-      // Focus the heading input field after a short delay
-      setTimeout(() => {
-        if (headingRef.current) {
-          headingRef.current.focus();
-        }
-      }, 100);
+    // Focus the heading input field after a short delay
+    setTimeout(() => {
+      if (headingRef.current) {
+        headingRef.current.focus();
+      }
+    }, 100);
   }, [open]);
 
   useEffect(() => {
@@ -69,15 +74,15 @@ const AddUpdate: React.FC<AddUpdateProps> = ({ onClose, open }) => {
   };
 
   return (
-    <Dialog 
-      onClose={handleClose} 
-      open={open} 
+    <Dialog
+      onClose={handleClose}
+      open={open}
       PaperProps={{
         component: 'form',
         onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
           handleSubmit(event);
-      },
-    }}>
+        }
+      }}>
       <DialogTitle>Add New Update</DialogTitle>
       <DialogContent sx={{ paddingTop: '1rem !important' }}>
         <TextField
@@ -106,16 +111,15 @@ const AddUpdate: React.FC<AddUpdateProps> = ({ onClose, open }) => {
           onChange={(e) => setContent(e.target.value)}
           sx={{ mb: 2 }}
         />
-        </DialogContent>
-        <DialogActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Button variant="outlined" color="info" onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button type="submit" variant="contained" color="primary">
-            Submit
-          </Button>
-        </DialogActions>
-      
+      </DialogContent>
+      <DialogActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Button variant="outlined" color="info" onClick={handleClose}>
+          Cancel
+        </Button>
+        <Button type="submit" variant="contained" color="primary">
+          Submit
+        </Button>
+      </DialogActions>
     </Dialog>
   );
 };

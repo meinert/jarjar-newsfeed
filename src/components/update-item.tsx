@@ -1,24 +1,19 @@
-import React, { JSX, useContext } from 'react';
-import { LocalizationContext } from '../context/LocalizationContext';
+import React, { JSX } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import { UpdateItemProps } from '../models/updates';
-import Avatar from '@mui/material/Avatar';
-import CardHeader from '@mui/material/CardHeader';
-import DateTimeFormatter from '../utils/dateTimeUtil';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import AccordionDetails from '@mui/material/AccordionDetails';
 import ViewComments from './view-commets';
 import CardItem from './card-item';
 
-
-const UpdateItem: React.FC<UpdateItemProps> = ({ by, heading, text, imageSrc, created, comments }): JSX.Element => {
+const UpdateItem: React.FC<UpdateItemProps> = ({
+  by,
+  heading,
+  text,
+  imageSrc,
+  created,
+  comments
+}): JSX.Element => {
   // constructor(props) {
   //   super(props);
 
@@ -65,7 +60,6 @@ const UpdateItem: React.FC<UpdateItemProps> = ({ by, heading, text, imageSrc, cr
       </Box>
     </React.Fragment>
   );
-  
-}
+};
 
 export default UpdateItem;

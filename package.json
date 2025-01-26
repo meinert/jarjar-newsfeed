@@ -16,13 +16,22 @@
     "uuid": "^11.0.5"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:prettier/recommended",
+      "plugin:jsx-a11y/strict"
+    ]
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "browserslist": [
     ">0.2%",
@@ -32,13 +41,19 @@
   ],
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@eslint/js": "^9.19.0",
     "@types/jest": "^29.5.14",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@types/uuid": "^10.0.0",
     "eslint": "^8.57.1",
-    "eslint-config-react": "^1.1.7",
-    "eslint-config-react-app": "^7.0.1"
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-react": "^7.37.4",
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2",
+    "typescript-eslint": "^8.21.0"
   },
   "overrides": {
     "react-scripts": {

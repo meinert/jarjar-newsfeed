@@ -2,5 +2,6 @@
     "cSpell.words": [
         "jarjar",
         "Newsfeed"
-    ]
+    ],
+    "editor.formatOnSave": true
 }

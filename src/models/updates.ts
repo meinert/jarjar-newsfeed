@@ -6,41 +6,37 @@ import b1droidImage from '../assets/b1droid.jpg';
 import { v4 as uuid } from 'uuid';
 
 export interface UpdatesProps {
-    updates: UpdateItemProps[];
+  updates: UpdateItemProps[];
 }
 
 export interface UpdateItemProps {
-    id: string;
-    by: string;
-    heading: string;
-    text: string;
-    imageSrc: string;
-    created: Date;
-    comments: CommentProps[];
+  id: string;
+  by: string;
+  heading: string;
+  text: string;
+  imageSrc: string;
+  created: Date;
+  comments: CommentProps[];
 }
 
 export interface CommentProps {
-    id: string;
-    by: string;
-    text: string;
-    imageSrc: string;
-    created: Date;
+  id: string;
+  by: string;
+  text: string;
+  imageSrc: string;
+  created: Date;
 }
 
 export class UpdatesFactory {
-    static createUpdateItem(
-        by: string,
-        heading: string,
-        text: string,
-    ): UpdateItemProps {
-        return {
-            id: uuid(),
-            by,
-            heading,
-            text,
-            imageSrc: jarjarImage, // TODO: Change based on "by"
-            created: new Date(),
-            comments: []
-        };
-    }
+  static createUpdateItem(by: string, heading: string, text: string): UpdateItemProps {
+    return {
+      id: uuid(),
+      by,
+      heading,
+      text,
+      imageSrc: jarjarImage, // TODO: Change based on "by"
+      created: new Date(),
+      comments: []
+    };
+  }
 }
