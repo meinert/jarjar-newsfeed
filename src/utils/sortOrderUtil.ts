@@ -1,13 +1,9 @@
 import { SortOrder, SortKey } from '../models/enums';
 
-interface HasCreated {
-  created: Date | string;
-}
-
-export const sortUtil = <T extends HasCreated>(
+export const sortUtil = <T>(
   a: T,
   b: T,
-  sortKey: SortKey,
+  sortKey: SortKey | string,
   sortOrder: SortOrder
 ): number => {
   const keyA = a[sortKey];

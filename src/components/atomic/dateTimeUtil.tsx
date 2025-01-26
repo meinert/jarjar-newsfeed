@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { LocalizationContext } from '../context/LocalizationContext';
+import { LocalizationContext } from '../../context/LocalizationContext';
 
 interface DateTimeFormatterProps {
   date: Date;

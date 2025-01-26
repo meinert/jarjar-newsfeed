@@ -5,7 +5,7 @@ import b1droidImage from './assets/b1droid.jpg';
 
 import moment from 'moment';
 import { v4 as uuid } from 'uuid';
-import { CommentProps, UpdateItemProps } from './models/updates';
+import { CommentItem, UpdateItem, Updates } from './models/updates';
 
 const getRandomDate = () => {
   const randomNumber = Math.floor(Math.random() * Math.floor(5 * 24 * 60));
@@ -17,7 +17,7 @@ export const comment = (
   text: string,
   imageSrc: any,
   created: Date = getRandomDate()
-): CommentProps => ({
+): CommentItem => ({
   text,
   by,
   created,
@@ -31,7 +31,7 @@ export const update = (
   text: string,
   imageSrc: any,
   created: Date = getRandomDate()
-): UpdateItemProps => {
+): UpdateItem => {
   return {
     by,
     heading,
@@ -47,7 +47,7 @@ export const update = (
   };
 };
 
-const data = {
+const data: Updates = {
   updates: [
     update(
       'Jar Jar',

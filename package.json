@@ -23,7 +23,10 @@
       "plugin:react/recommended",
       "plugin:prettier/recommended",
       "plugin:jsx-a11y/strict"
-    ]
+    ],
+    "rules": {
+      "no-unused-vars": "warn"
+    }
   },
   "scripts": {
     "start": "react-scripts start",

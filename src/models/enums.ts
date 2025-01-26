@@ -8,3 +8,9 @@ export enum SortKey {
   CREATED = 'created',
   AUTHOR = 'by'
 }
+
+export enum UpdateType {
+  UPDATE = 'UPDATE',
+  COMMENT = 'COMMENT',
+  RATING = 'RATING'
+}

@@ -2,6 +2,11 @@
 
 BY Peter Fjordbak Poulsen
 
+The components of the news feed application are structured according to the principles of Atomic Design, e.g.
+![Atomic Design](docs/image.png)
+
+As the application is using the Material Designs system (https://mui.com/material-ui/all-components/) many of the atoms are already provided by the library.
+
 ## Changelog
 
 1. The project now uses the branching strategy described in the section [Branching strategy](#branching-strategy)
@@ -15,6 +20,7 @@ BY Peter Fjordbak Poulsen
 1. Added heading to updates
 1. Added dialog with form and input validation for adding new update
 1. Setup of linting and formatting + applying it to the code
+1. Created generic sortOrderUtil that can sort by any property descending or ascending
 
 Welcome to this React project. Before you lies the bare basics to implement your own Jar Jar Newsfeed. Your app should:
 
@@ -56,12 +62,13 @@ don't let this kill your own creativity or make any assumptions about its qualit
 
 Updates list using cards
 Comments that can expand
-
 Option to add update, e.g. from a drawer using a modal
+
 Option to add comment to update using a modal
 Option to add reaction to update, e.g. using stars
 Option to add reaction to comment, e.g. using stars
 Make only on comment section be expanded
+Move styling to style sheets
 Sort updates and comments by date
 Custom hooks to load data
 SQLLite DB for data

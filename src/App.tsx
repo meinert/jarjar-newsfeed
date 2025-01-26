@@ -2,15 +2,15 @@ import React from 'react';
 import './App.scss';
 import data from './data';
 
-import ViewUpdates from './components/view-updates';
-import { UpdateItemProps } from './models/updates';
-import NewsfeedPanel from './components/newsfeed-panel';
+import ViewUpdates from './components/templates/view-updates';
+import { CommentItem, UpdateItem } from './models/updates';
+import NewsfeedPanel from './components/templates/newsfeed-panel';
 
-import { SortOrder, SortKey } from './models/enums';
+import { SortOrder, SortKey, UpdateType } from './models/enums';
 import { sortUtil } from './utils/sortOrderUtil';
 
 interface AppProps {
-  updates: UpdateItemProps[];
+  updates: UpdateItem[];
   sortOrder: SortOrder;
   sortKey: SortKey;
 }
@@ -27,9 +27,9 @@ class App extends React.Component {
     sortKey: this.defaultSortKey
   };
 
-  handleAddUpdate = (update: UpdateItemProps) => {
+  handleAddUpdate = (update: UpdateItem) => {
     this.setState((state: AppProps) => {
-      const updates: UpdateItemProps[] = [...state.updates, update];
+      const updates: UpdateItem[] = [...state.updates, update];
 
       console.log('Add an update to updates', update, updates);
       return { updates };
@@ -40,13 +40,21 @@ class App extends React.Component {
 
   handleSortUpdates = () => {
     this.setState((state: AppProps) => {
-      const updates: UpdateItemProps[] = state.updates.sort((a, b) =>
+      const updates: UpdateItem[] = state.updates.sort((a, b) =>
         sortUtil(a, b, state.sortKey, state.sortOrder)
       );
 
       console.log('Sort updates', updates);
       return { updates };
     });
+  };
+
+  onUpdatesChange = (
+    key: string | undefined,
+    updateType: UpdateType,
+    update: CommentItem | number
+  ) => {
+    console.log('App - onUpdatesChange', key, updateType, update);
   };
 
   render() {
@@ -56,7 +64,7 @@ class App extends React.Component {
       <React.Fragment>
         <div className="content">
           <NewsfeedPanel title="Jar Jar PPO" onAddUpdate={this.handleAddUpdate} />
-          <ViewUpdates updates={updates}></ViewUpdates>
+          <ViewUpdates onUpdatesChange={this.onUpdatesChange} updates={updates}></ViewUpdates>
         </div>
       </React.Fragment>
     );

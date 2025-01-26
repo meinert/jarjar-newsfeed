@@ -1,13 +1,13 @@
 import React from 'react';
 import Button from '@mui/material/Button';
-import { UpdateItemProps } from '../models/updates';
-import AddUpdate from './add-update';
+import { UpdateItem } from '../../models/updates';
+import AddUpdateDialog from '../molecules/add-update-dialog';
 
 // import ViewUpdate from './view-update'
 // import AddUpdate from './add-update'
 
 interface NewsfeedPanelProps {
-  onAddUpdate: (update: UpdateItemProps) => void;
+  onAddUpdate: (update: UpdateItem) => void;
   title: string;
 }
 
@@ -18,7 +18,7 @@ const NewsfeedPanel: React.FC<NewsfeedPanelProps> = ({ onAddUpdate, title }) => 
     setOpen(true);
   };
 
-  const handleClose = (value: UpdateItemProps | undefined) => {
+  const handleClose = (value: UpdateItem | undefined) => {
     setOpen(false);
     if (value === undefined) {
       console.log('Dialog close without adding update');
@@ -37,7 +37,7 @@ const NewsfeedPanel: React.FC<NewsfeedPanelProps> = ({ onAddUpdate, title }) => 
         </Button>
       </div>
 
-      <AddUpdate open={open} onClose={handleClose} />
+      <AddUpdateDialog open={open} onClose={handleClose} title="Add new update" />
     </React.Fragment>
   );
 };
