@@ -5,11 +5,11 @@ import b1droidImage from './assets/b1droid.jpg';
 
 import moment from 'moment';
 import { v4 as uuid } from 'uuid';
-import { CommentItem, UpdateItem, Updates, UpdatesFactory } from './models/updateAndComment';
+import { CommentItem, UpdateItem, Updates } from './models/updateAndComment';
 import { User } from './models/user';
 import { randomNumber } from './utils/miscUtils';
 
-const users: User[] = [
+export const users: User[] = [
   { id: uuid(), name: 'Jar Jar', imageSrc: jarjarImage },
   { id: uuid(), name: 'R2-D2', imageSrc: r2Image },
   { id: uuid(), name: 'C3P0', imageSrc: c3poImage },
@@ -112,9 +112,8 @@ const generateUpdateItem = (): UpdateItem => {
     const user = getRandomElement(users);
     commentsArray.push({
       id: uuid(),
-      by: user.name,
+      user: user,
       text: comment,
-      imageSrc: user.imageSrc,
       created: getRandomDate(),
       rating: randomNumber(1, 5),
       numberOfVotes: randomNumber(1, 10)
@@ -123,10 +122,9 @@ const generateUpdateItem = (): UpdateItem => {
 
   return {
     id: uuid(),
-    by: user.name,
+    user: user,
     heading: newsUpdate.heading,
     text: newsUpdate.newsUpdate,
-    imageSrc: user.imageSrc,
     created: getRandomDate(),
     rating: randomNumber(1, 5),
     numberOfVotes: randomNumber(1, 10),
@@ -139,7 +137,6 @@ const generateUpdates = (count: number): Updates => {
   for (let i = 0; i < count; i++) {
     updates.updates.push(generateUpdateItem());
   }
-  console.log('generateUpdates', updates);
   return updates;
 };
 

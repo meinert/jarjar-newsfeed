@@ -4,6 +4,7 @@
 // import b1droidImage from '../assets/b1droid.jpg';
 
 import { v4 as uuid } from 'uuid';
+import { User } from './user';
 
 export interface Updates {
   updates: UpdateItem[];
@@ -11,9 +12,8 @@ export interface Updates {
 
 export interface Item {
   id: string;
-  by: string;
+  user: User;
   text: string;
-  imageSrc: string;
   created: Date;
   rating: number;
   numberOfVotes: number;
@@ -28,10 +28,9 @@ export interface CommentItem extends Item {}
 
 export class UpdatesFactory {
   static createUpdateItem(
-    by: string,
+    user: User,
     heading: string,
     text: string,
-    imageSrc?: string,
     comments?: CommentItem[],
     created?: Date,
     rating?: number,
@@ -39,10 +38,9 @@ export class UpdatesFactory {
   ): UpdateItem {
     return {
       id: uuid(),
-      by,
+      user,
       heading,
       text,
-      imageSrc: imageSrc || by,
       created: created || new Date(),
       rating: rating || 0,
       numberOfVotes: numberOfVotes || 0,
@@ -51,16 +49,15 @@ export class UpdatesFactory {
   }
 
   static createCommentItem(
-    by: string,
+    user: User,
     text: string,
     imageSrc?: string,
     created?: Date
   ): CommentItem {
     return {
       id: uuid(),
-      by,
+      user,
       text,
-      imageSrc: imageSrc || by,
       created: created || new Date(),
       rating: 0,
       numberOfVotes: 0

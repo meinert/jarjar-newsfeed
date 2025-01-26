@@ -1,7 +1,8 @@
 import { Dialog, DialogTitle, Button, DialogContent, DialogActions } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { UpdateItem, UpdatesFactory } from '../../models/updateAndComment';
 import FormInput from '../atomic/form-input';
+import { AppContext } from '../../context/AppContext';
 
 interface AddUpdateDialogProps {
   onClose: (value: UpdateItem | undefined) => void;
@@ -10,6 +11,7 @@ interface AddUpdateDialogProps {
 }
 
 const AddUpdateDialog: React.FC<AddUpdateDialogProps> = ({ onClose, open, title }) => {
+  const { user } = useContext(AppContext);
   const [heading, setHeading] = useState('');
   const [content, setContent] = useState('');
 
@@ -19,7 +21,7 @@ const AddUpdateDialog: React.FC<AddUpdateDialogProps> = ({ onClose, open, title 
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const update: UpdateItem = UpdatesFactory.createUpdateItem('PPO', heading, content); // TODO: CHange the user of the update
+    const update: UpdateItem = UpdatesFactory.createUpdateItem(user, heading, content); // TODO: CHange the user of the update
     console.log('handleSubmit', update);
     onClose(update);
   };

@@ -1,6 +1,6 @@
 import React from 'react';
 import CardUpdate from '../organisms/card-update';
-import { CommentItem, Item, UpdateItem } from '../../models/updateAndComment';
+import { Item, UpdateItem } from '../../models/updateAndComment';
 import { UpdateType } from '../../models/enums';
 
 interface ViewUpdatesProps {
@@ -9,8 +9,6 @@ interface ViewUpdatesProps {
 }
 
 const ViewUpdates: React.FC<ViewUpdatesProps> = ({ updates, onUpdatesChange }) => {
-  console.log('ViewUpdates - App props:', updates);
-
   return (
     <div>
       {updates.map((update, key) => (

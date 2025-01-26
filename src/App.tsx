@@ -14,7 +14,6 @@ const App: React.FC = () => {
   const defaultSortKey = SortKey.CREATED;
 
   const [updates, setUpdates] = useState<UpdateItem[]>(() => {
-    console.log('data', data);
     return data.updates.sort((a, b) => sortUtil(a, b, defaultSortKey, defaultSortOrder));
   });
   const [sortOrder, setSortOrder] = useState<SortOrder>(defaultSortOrder);

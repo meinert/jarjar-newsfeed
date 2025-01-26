@@ -39,8 +39,10 @@ const CardItem: React.FC<CardItemProps> = ({
 
   const cardHeader = (
     <CardHeader
-      avatar={<Avatar alt={item.by} src={item.imageSrc} sx={{ width: 56, height: 56 }} />}
-      title={item.by}
+      avatar={
+        <Avatar alt={item.user.name} src={item.user.imageSrc} sx={{ width: 56, height: 56 }} />
+      }
+      title={item.user.name}
       subheader={<DateTimeFormatter date={item.created} showSeconds={false} />}
     />
   );

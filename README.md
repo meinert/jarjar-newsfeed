@@ -64,10 +64,10 @@ don't let this kill your own creativity or make any assumptions about its qualit
 Updates list using cards
 Comments that can expand
 Option to add update, e.g. from a drawer using a modal
-
 Option to add comment to update using a modal
 Option to add reaction to update, e.g. using stars
 Option to add reaction to comment, e.g. using stars
+
 Make only on comment section be expanded
 Move styling to style sheets
 Sort updates and comments by date

@@ -1,7 +1,6 @@
 import React, { JSX } from 'react';
 import { Item } from '../../models/updateAndComment';
 import CardItem from '../molecules/card-item';
-import { UpdateType } from '../../models/enums';
 
 interface CardCommentProps {
   item: Item;
