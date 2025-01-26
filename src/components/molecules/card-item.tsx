@@ -1,6 +1,17 @@
 import React, { JSX } from 'react';
 import DateTimeFormatter from '../atomic/dateTimeUtil';
-import { Avatar, Box, Card, CardActions, CardContent, CardHeader, Typography } from '@mui/material';
+import {
+  Avatar,
+  Box,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  Rating,
+  Tooltip,
+  Typography
+} from '@mui/material';
+import { randomNumber } from '../../utils/miscUtils';
 
 interface CardItemProps {
   by: string;
@@ -9,6 +20,7 @@ interface CardItemProps {
   imageSrc: string;
   created: Date;
   actions?: JSX.Element;
+  elevation?: number;
 }
 
 const CardItem: React.FC<CardItemProps> = ({
@@ -17,8 +29,17 @@ const CardItem: React.FC<CardItemProps> = ({
   text,
   imageSrc,
   created,
-  actions
+  actions,
+  elevation = 1
 }): JSX.Element => {
+  const [rating, setRating] = React.useState<number>(randomNumber(1, 5));
+  const [numberOfVotes, setNumberOfVotes] = React.useState<number>(randomNumber(1, 10));
+
+  const calculateAverageRating = (newValue) => {
+    setNumberOfVotes((numberOfVotes) => numberOfVotes + 1);
+    setRating((rating) => (rating * numberOfVotes + newValue) / (numberOfVotes + 1));
+  };
+
   const cardHeader = (
     <CardHeader
       avatar={<Avatar alt={by} src={imageSrc} sx={{ width: 56, height: 56 }} />}
@@ -35,6 +56,24 @@ const CardItem: React.FC<CardItemProps> = ({
         </Typography>
       )}
       <Typography variant="body1">{text}</Typography>
+
+      <Tooltip title="Please leave you vote..." placement="top-start" followCursor>
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Rating
+              sx={{ marginTop: '8px' }}
+              value={rating}
+              precision={0.5}
+              onChange={(event, newValue) => {
+                calculateAverageRating(newValue);
+              }}
+            />
+            <Typography variant="body2" sx={{ color: 'text.secondary', marginLeft: 1 }}>
+              ( Based on {numberOfVotes} votes )
+            </Typography>
+          </div>
+        </div>
+      </Tooltip>
     </CardContent>
   );
 
@@ -42,7 +81,7 @@ const CardItem: React.FC<CardItemProps> = ({
 
   return (
     <Box sx={{ minWidth: 275, padding: '1rem 0' }}>
-      <Card variant="elevation">
+      <Card variant="elevation" elevation={elevation}>
         {cardHeader}
         {cardContent}
         {actions && cardActions}

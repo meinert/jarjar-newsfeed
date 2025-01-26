@@ -50,12 +50,17 @@ const ViewComments: React.FC<ViewCommentsProps> = ({ onCommentCardUpdate, commen
 
   return (
     <React.Fragment>
-      <Accordion sx={{ width: '100%' }} elevation={5}>
+      <Accordion sx={{ width: '100%' }} elevation={10}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1-content"
           id="panel1-header">
-          <Typography component="span">This update has {comments.length} comments</Typography>
+          <Typography component="span">This update has {comments.length} comments </Typography>
+          {comments.length === 0 && (
+            <Button sx={{ height: '1.5rem' }} onClick={handleClickOpen}>
+              Be the first to leave a comment
+            </Button>
+          )}
         </AccordionSummary>
         <AccordionDetails>
           {comments.map((comment, key) => (

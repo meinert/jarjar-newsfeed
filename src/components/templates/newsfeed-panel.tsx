@@ -31,7 +31,10 @@ const NewsfeedPanel: React.FC<NewsfeedPanelProps> = ({ onAddUpdate, title }) => 
   return (
     <React.Fragment>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <h1>{title} - NewsfeedPanel</h1>
+        <div className="title">
+          <span> {title} - NewsfeedPanel</span> <br />
+          <span>By Peter Fjordbak Poulsen</span>
+        </div>
         <Button variant="contained" onClick={handleClickOpen}>
           Add update
         </Button>

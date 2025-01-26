@@ -63,7 +63,7 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <div className="content">
-          <NewsfeedPanel title="Jar Jar PPO" onAddUpdate={this.handleAddUpdate} />
+          <NewsfeedPanel title="Jar Jar" onAddUpdate={this.handleAddUpdate} />
           <ViewUpdates onUpdatesChange={this.onUpdatesChange} updates={updates}></ViewUpdates>
         </div>
       </React.Fragment>
