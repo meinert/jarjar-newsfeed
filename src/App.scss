@@ -96,15 +96,45 @@ blockquote {
 }
 
 body {
-  background: #34394F url('naboobackground.png') fixed center center;
+  /* background: #34394F url('assets/naboobackground.png') fixed center center; */
+  // background-color: rgb(201, 201, 201);
+  background-color:black;
+  background-image:
+    radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 10px),
+    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 5px),
+    radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 10px),
+    radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 5px);
+  background-size: 150px 150px, 250px 250px, 150px 150px, 50px 50px;
+  background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+}
+
+.title {
+  letter-spacing: 10px;
+  padding-left: 10px;
+  font-size: 24px;
+
+  span {
+    background: -webkit-linear-gradient(white, #1b69b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  span:first-of-type {
+    font-size: 50px;
+  }
 }
 
 #root {
 }
 
-#root > .container {
+.content {
   padding: 50px 0;
-  background: white;
+  // background: white;
+  margin: 0 5rem;
+
+  @media (max-width: 768px) {
+    margin: 0 1rem;
+  }
 }
 
 .display-1 {

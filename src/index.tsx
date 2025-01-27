@@ -1,16 +1,18 @@
-import React, {StrictMode} from 'react'
-import {createRoot} from 'react-dom/client'
-import './index.css'
-import { App } from './App'
-import registerServiceWorker from './registerServiceWorker'
+import React, { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import App from './App';
+import registerServiceWorker from './registerServiceWorker';
 
-const rootElement = document.getElementById('root')
+const rootElement = document.getElementById('root');
 if (!rootElement) {
-    throw new Error('No root element found')
+  throw new Error('No root element found');
 }
-const reactRoot = createRoot(rootElement)
-reactRoot.render(<StrictMode>
+const reactRoot = createRoot(rootElement);
+reactRoot.render(
+  <StrictMode>
     <App />
-</StrictMode>)
+  </StrictMode>
+);
 
-registerServiceWorker()
+registerServiceWorker();
