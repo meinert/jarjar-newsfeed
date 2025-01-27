@@ -22,10 +22,6 @@ interface CardItemProps {
   onRating: (key: string, item: Item) => void;
 }
 
-// interface SnakBarState extends SnackbarOrigin {
-//   open: boolean;
-// }
-
 const CardItem: React.FC<CardItemProps> = ({
   item,
   heading = undefined,

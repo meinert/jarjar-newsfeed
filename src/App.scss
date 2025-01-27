@@ -108,19 +108,38 @@ body {
   background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
 }
 
+$breakpoint-large: 1535px;
+$breakpoint-medium: 1100px;
+
+.toolbar {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+
+  @media (max-width: $breakpoint-large) {
+    justify-content: space-between;
+  }
+}
+
 .title {
   letter-spacing: 10px;
   padding-left: 10px;
-  font-size: 24px;
 
   span {
+    font-size: 36px;
     background: -webkit-linear-gradient(white, #1b69b6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    @media (max-width: $breakpoint-medium) {
+      font-size: 24px;
+    }
   }
   
   span:first-of-type {
-    font-size: 50px;
+    font-size: 58px;
+    @media (max-width: $breakpoint-medium) {
+      font-size: 36px;
+    }
   }
 }
 
