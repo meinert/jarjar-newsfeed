@@ -10,6 +10,7 @@ import { SortOrder, SortKey, UpdateType } from './models/enums';
 import { sortUtil } from './utils/sortOrderUtil';
 import { AppContextProvider } from './context/AppContextProvider';
 
+
 const App: React.FC = () => {
   const defaultSortOrder = SortOrder.DSC;
   const defaultSortKey = SortKey.CREATED;
