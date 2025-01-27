@@ -1,7 +1,7 @@
 import React, { JSX } from 'react';
 import { CommentItem, Item, UpdateItem } from '../../models/updateAndComment';
-import ViewComments from './view-comments';
-import CardItem from '../molecules/card-item';
+import { ViewCommentsMemo } from './view-comments';
+import { CardItemMemo } from '../molecules/card-item';
 import { UpdateType } from '../../models/enums';
 
 interface CardUpdateProps {
@@ -37,11 +37,11 @@ const CardUpdate: React.FC<CardUpdateProps> = ({ updateItem, onUpdateItemChange 
   };
 
   const updateCardActions = (
-    <ViewComments comments={updateItem.comments} onCommentCardUpdate={onCommentCardUpdate} />
+    <ViewCommentsMemo comments={updateItem.comments} onCommentCardUpdate={onCommentCardUpdate} />
   );
 
   return (
-    <CardItem
+    <CardItemMemo
       onRating={onUpdateRating}
       item={updateItem}
       heading={updateItem.heading}
@@ -50,4 +50,4 @@ const CardUpdate: React.FC<CardUpdateProps> = ({ updateItem, onUpdateItemChange 
   );
 };
 
-export default CardUpdate;
+export const CardUpdateMemo = React.memo(CardUpdate);

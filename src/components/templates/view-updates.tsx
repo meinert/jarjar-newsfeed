@@ -1,9 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
-import ViewComments from '../organisms/view-comments';
+import { ViewCommentsMemo } from '../organisms/view-comments';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
-import CardItem from '../molecules/card-item';
+import { CardItemMemo } from '../molecules/card-item';
 import React from 'react';
-import CardUpdate from '../organisms/card-update';
+import { CardUpdateMemo } from '../organisms/card-update';
 import { Item, UpdateItem } from '../../models/updateAndComment';
 import { UpdateType } from '../../models/enums';
 import Grid from '@mui/material/Grid2';
@@ -20,9 +20,9 @@ import Grid from '@mui/material/Grid2';
 /**
  * ViewUpdates component.
  *
- * This component renders a card for each update using the @see CardUpdate component within a responsive grid layout.
- * Each card contain a component that allows the user to see the comments on the update and add comments. @see ViewComments
- * Furthermore the user can rank the update with 1-5 stars. @see CardItem
+ * This component renders a card for each update using the @see CardUpdateMemo component within a responsive grid layout.
+ * Each card contain a component that allows the user to see the comments on the update and add comments. @see ViewCommentsMemo
+ * Furthermore the user can rank the update with 1-5 stars. @see CardItemMemo
  *
  * @component
  * @param {ViewUpdatesProps} props - The props for the component.
@@ -38,11 +38,11 @@ const ViewUpdates: React.FC<ViewUpdatesProps> = ({ updates, onUpdatesChange }) =
     <Grid container spacing={1}>
       {updates.map((update, key) => (
         <Grid key={key} size={{ xs: 12, md: 6 }}>
-          <CardUpdate key={key} updateItem={update} onUpdateItemChange={onUpdatesChange} />
+          <CardUpdateMemo key={key} updateItem={update} onUpdateItemChange={onUpdatesChange} />
         </Grid>
       ))}
     </Grid>
   );
 };
 
-export default ViewUpdates;
+export const ViewUpdatesMemo = React.memo(ViewUpdates);

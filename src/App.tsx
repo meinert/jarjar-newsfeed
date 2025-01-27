@@ -2,14 +2,13 @@ import React, { useState, useCallback } from 'react';
 import './App.scss';
 import data from './data';
 
-import ViewUpdates from './components/templates/view-updates';
 import { CommentItem, Item, UpdateItem } from './models/updateAndComment';
 import NewsfeedPanel from './components/templates/newsfeed-panel';
 
 import { SortOrder, SortKey, UpdateType } from './models/enums';
 import { sortUtil } from './utils/sortOrderUtil';
 import { AppContextProvider } from './context/AppContextProvider';
-
+import { ViewUpdatesMemo } from './components/templates/view-updates';
 
 const App: React.FC = () => {
   const defaultSortOrder = SortOrder.DSC;
@@ -80,7 +79,7 @@ const App: React.FC = () => {
       <AppContextProvider>
         <div className="content">
           <NewsfeedPanel title="Jar Jar" onAddUpdate={handleAddUpdate} />
-          <ViewUpdates onUpdatesChange={onUpdatesChange} updates={updates}></ViewUpdates>
+          <ViewUpdatesMemo onUpdatesChange={onUpdatesChange} updates={updates}></ViewUpdatesMemo>
         </div>
       </AppContextProvider>
     </React.Fragment>

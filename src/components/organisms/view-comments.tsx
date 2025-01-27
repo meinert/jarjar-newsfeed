@@ -72,4 +72,4 @@ const ViewComments: React.FC<ViewCommentsProps> = ({ onCommentCardUpdate, commen
   );
 };
 
-export default ViewComments;
+export const ViewCommentsMemo = React.memo(ViewComments);

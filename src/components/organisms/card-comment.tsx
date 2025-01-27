@@ -1,6 +1,6 @@
 import React, { JSX } from 'react';
 import { Item } from '../../models/updateAndComment';
-import CardItem from '../molecules/card-item';
+import { CardItemMemo } from '../molecules/card-item';
 
 interface CardCommentProps {
   item: Item;
@@ -8,7 +8,7 @@ interface CardCommentProps {
 }
 
 const CardComment: React.FC<CardCommentProps> = ({ item, onRating }): JSX.Element => {
-  return <CardItem onRating={onRating} item={item} elevation={20} />;
+  return <CardItemMemo onRating={onRating} item={item} elevation={20} />;
 };
 
 export default CardComment;
