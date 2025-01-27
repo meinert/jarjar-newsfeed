@@ -3,9 +3,24 @@ import Button from '@mui/material/Button';
 import { UpdateItem } from '../../models/updateAndComment';
 import AddUpdateDialog from '../molecules/add-update-dialog';
 
-// import ViewUpdate from './view-update'
-// import AddUpdate from './add-update'
+/**
+ * Props for the NewsfeedPanel component.
+ *
+ * @interface NewsfeedPanelProps
+ * @property {function} onAddUpdate - Callback function to handle the addition of a new update.
+ * @property {string} title - The title of the newsfeed panel.
+ */
 
+/**
+ * NewsfeedPanel component.
+ *
+ * This component renders a panel with a title and a button to add a new update.
+ * When the button is clicked, a dialog is opened to add a new update.
+ *
+ * @component
+ * @param {NewsfeedPanelProps} props - The props for the component.
+ * @returns {React.FC<NewsfeedPanelProps>} The NewsfeedPanel component.
+ */
 interface NewsfeedPanelProps {
   onAddUpdate: (update: UpdateItem) => void;
   title: string;
