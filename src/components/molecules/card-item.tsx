@@ -8,6 +8,7 @@ import {
   CardContent,
   CardHeader,
   Rating,
+  Snackbar,
   Tooltip,
   Typography
 } from '@mui/material';
@@ -21,6 +22,10 @@ interface CardItemProps {
   onRating: (key: string, item: Item) => void;
 }
 
+// interface SnakBarState extends SnackbarOrigin {
+//   open: boolean;
+// }
+
 const CardItem: React.FC<CardItemProps> = ({
   item,
   heading = undefined,
@@ -30,11 +35,15 @@ const CardItem: React.FC<CardItemProps> = ({
 }): JSX.Element => {
   const [rating, setRating] = React.useState<number>(item.rating);
   const [numberOfVotes, setNumberOfVotes] = React.useState<number>(item.numberOfVotes);
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+  const [lastRating, setLastRating] = React.useState<number>(0);
 
   const calculateAverageRating = (newValue) => {
     setNumberOfVotes((numberOfVotes) => numberOfVotes + 1);
     setRating((rating) => (rating * numberOfVotes + newValue) / (numberOfVotes + 1));
     onRating(item.id, item);
+    setLastRating(newValue);
+    setSnackbarOpen(true);
   };
 
   const cardHeader = (
@@ -73,6 +82,13 @@ const CardItem: React.FC<CardItemProps> = ({
           </div>
         </div>
       </Tooltip>
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={snackbarOpen}
+        autoHideDuration={2000}
+        onClose={() => setSnackbarOpen(false)}
+        message={'Thanks for your vote! You voted ' + lastRating + ' ★'}
+      />
     </CardContent>
   );
 
