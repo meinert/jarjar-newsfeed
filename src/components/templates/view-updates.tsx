@@ -2,11 +2,13 @@
 import { ViewCommentsMemo } from '../organisms/view-comments';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 import { CardItemMemo } from '../molecules/card-item';
-import React from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import { CardUpdateMemo } from '../organisms/card-update';
 import { Item, UpdateItem } from '../../models/updateAndComment';
 import { UpdateType } from '../../models/enums';
 import Grid from '@mui/material/Grid2';
+import { Checkbox } from '@mui/material';
+import { AppContext } from '../../context/AppContext';
 
 /**
  * Props for the ViewUpdates component.
@@ -34,14 +36,53 @@ interface ViewUpdatesProps {
 }
 
 const ViewUpdates: React.FC<ViewUpdatesProps> = ({ updates, onUpdatesChange }) => {
+  const [shownUpdates, setShownUpdates] = useState<UpdateItem[]>(updates);
+  const [filterUpdates, setFilterUpdates] = useState<boolean>(false);
+  const { user } = useContext(AppContext);
+
+  const handleFilterUpdates = useCallback(
+    (event, checked) => {
+      setFilterUpdates(checked);
+      if (checked) {
+        const filteredUpdates = updates.filter((update) => update.user.id === user.id);
+        setShownUpdates(filteredUpdates);
+      } else {
+        setShownUpdates(updates);
+      }
+    },
+    [updates, user.id]
+  );
+
+  React.useEffect(() => {
+    if (filterUpdates) {
+      setShownUpdates(updates.filter((update) => update.user.id === user.id));
+    }
+  }, [filterUpdates, updates, user]);
+
+  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
   return (
-    <Grid container spacing={1}>
-      {updates.map((update, key) => (
-        <Grid key={key} size={{ xs: 12, md: 6 }}>
-          <CardUpdateMemo key={key} updateItem={update} onUpdateItemChange={onUpdatesChange} />
-        </Grid>
-      ))}
-    </Grid>
+    <React.Fragment>
+      <div style={{ color: 'white' }}>
+        <Checkbox
+          {...label}
+          checked={filterUpdates}
+          onChange={handleFilterUpdates}
+          style={{ color: 'white' }}
+        />
+        Only show updates from selected user
+      </div>
+      <Grid container spacing={1}>
+        {filterUpdates && shownUpdates.length === 0 && (
+          <div style={{ color: 'white', fontSize: '3rem' }}>No updates for selected user</div>
+        )}
+        {shownUpdates.map((update, key) => (
+          <Grid key={key} size={{ xs: 12, md: 6 }}>
+            <CardUpdateMemo key={key} updateItem={update} onUpdateItemChange={onUpdatesChange} />
+          </Grid>
+        ))}
+      </Grid>
+    </React.Fragment>
   );
 };
 
