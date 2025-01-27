@@ -2,6 +2,8 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import { UpdateItem } from '../../models/updateAndComment';
 import AddUpdateDialog from '../molecules/add-update-dialog';
+import ChangeUserComponent from '../atomic/change-user';
+import Grid from '@mui/material/Grid2';
 
 /**
  * Props for the NewsfeedPanel component.
@@ -46,19 +48,23 @@ const NewsfeedPanel: React.FC<NewsfeedPanelProps> = ({ onAddUpdate, title }) => 
   };
 
   return (
-    <React.Fragment>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <Grid container spacing={1}>
+      <Grid size={{ sm: 12, xl: 8 }}>
         <div className="title">
-          <span> {title} - NewsfeedPanel</span> <br />
+          <span> {title} - Newsfeed Panel</span> <br />
           <span>By Peter Fjordbak Poulsen</span>
         </div>
-        <Button variant="contained" onClick={handleClickOpen}>
-          Add update
-        </Button>
-      </div>
-
+      </Grid>
+      <Grid size={{ sm: 12, xl: 4 }}>
+        <div className="toolbar">
+          <Button sx={{ minWidth: '120px' }} variant="contained" onClick={handleClickOpen}>
+            Add update
+          </Button>
+          <ChangeUserComponent></ChangeUserComponent>
+        </div>
+      </Grid>
       <AddUpdateDialog open={open} onClose={handleClose} title="Add new update" />
-    </React.Fragment>
+    </Grid>
   );
 };
 

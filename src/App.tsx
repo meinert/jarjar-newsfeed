@@ -8,6 +8,7 @@ import NewsfeedPanel from './components/templates/newsfeed-panel';
 
 import { SortOrder, SortKey, UpdateType } from './models/enums';
 import { sortUtil } from './utils/sortOrderUtil';
+import { AppContextProvider } from './context/AppContextProvider';
 
 const App: React.FC = () => {
   const defaultSortOrder = SortOrder.DSC;
@@ -75,10 +76,12 @@ const App: React.FC = () => {
 
   return (
     <React.Fragment>
-      <div className="content">
-        <NewsfeedPanel title="Jar Jar" onAddUpdate={handleAddUpdate} />
-        <ViewUpdates onUpdatesChange={onUpdatesChange} updates={updates}></ViewUpdates>
-      </div>
+      <AppContextProvider>
+        <div className="content">
+          <NewsfeedPanel title="Jar Jar" onAddUpdate={handleAddUpdate} />
+          <ViewUpdates onUpdatesChange={onUpdatesChange} updates={updates}></ViewUpdates>
+        </div>
+      </AppContextProvider>
     </React.Fragment>
   );
 };
