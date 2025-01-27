@@ -33,14 +33,12 @@ const CardItem: React.FC<CardItemProps> = ({
   elevation = 1,
   onRating
 }): JSX.Element => {
-  const [rating, setRating] = React.useState<number>(item.rating);
-  const [numberOfVotes, setNumberOfVotes] = React.useState<number>(item.numberOfVotes);
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
   const [lastRating, setLastRating] = React.useState<number>(0);
 
   const calculateAverageRating = (newValue) => {
-    setNumberOfVotes((numberOfVotes) => numberOfVotes + 1);
-    setRating((rating) => (rating * numberOfVotes + newValue) / (numberOfVotes + 1));
+    item.rating = (item.rating * item.numberOfVotes + newValue) / (item.numberOfVotes + 1);
+    item.numberOfVotes = item.numberOfVotes + 1;
     onRating(item.id, item);
     setLastRating(newValue);
     setSnackbarOpen(true);
@@ -70,14 +68,14 @@ const CardItem: React.FC<CardItemProps> = ({
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <Rating
               sx={{ marginTop: '8px' }}
-              value={rating}
+              value={item.rating}
               precision={0.5}
               onChange={(event, newValue) => {
                 calculateAverageRating(newValue);
               }}
             />
             <Typography variant="body2" sx={{ color: 'text.secondary', marginLeft: 1 }}>
-              ( Based on {numberOfVotes} votes )
+              ( Based on {item.numberOfVotes} votes )
             </Typography>
           </div>
         </div>
